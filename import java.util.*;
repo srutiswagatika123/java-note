@@ -1,0 +1,659 @@
+import java.util.*;
+class Student
+{
+		private String name;  //instance variable   non static datamemeber
+	 private  int rollno;
+	  private  double mark;
+	  void init(String n,int r,double m)  //init we can write any name   
+	  {
+	   name=n;
+	   rollno=r;
+	   mark=m;
+
+	  }
+	  void show()   //display 
+	  {
+
+	  	 	System.out.println("my name="+name);
+	   		System.out.println("my rollno="+rollno);
+	   		System.out.println("my mark="+mark);
+	  }
+}
+class Test
+{
+ 
+	public static void main(String arg[])
+	{
+	   Student s=new Student();
+	   
+	   //  s.init("muna",1,90.50);
+	     s.show();
+	   
+	  
+	}
+}
+
+C:\Users\HP\Desktop\niss java>java Test
+my name=null
+my rollno=0
+my mark=0.0
+
+constructor
+__________________
+constructor is same as classname
+
+class classname
+{
+	classname()   //zero argument constructor
+	{
+
+	}
+}
+
+constructor have no return type.
+whenever object is created constructor extecute.
+it is used to initlize instance variable.
+
+2 types of constructor
+(1)no argument /zero argument /default constructor
+(2)parameter constructor 
+
+
+by default java provide.
+if we write compiler not provide
+class A
+{
+	
+}
+
+C:\Users\HP\Desktop\niss java>javac A.java
+
+C:\Users\HP\Desktop\niss java>javap A
+
+ class A {
+   A();
+}
+
+
+
+public class A
+{
+	
+}
+C:\Users\HP\Desktop\niss java>javac A.java
+
+C:\Users\HP\Desktop\niss java>javap A
+Compiled from "A.java"
+public class A {
+  public A();
+}
+
+
+
+
+public class A
+{
+	A()
+	{
+		
+	}
+}
+
+o/p:
+C:\Users\HP\Desktop\niss java>javac A.java
+
+C:\Users\HP\Desktop\niss java>javap A
+Compiled from "A.java"
+public class A {
+  A();
+}
+
+
+
+parameter constructor
+_______________________
+
+class classname
+{
+	classname(argument)
+	{
+
+	}
+}
+
+if write parameter constructor compiler does not zero argument constructor.
+
+
+public class A
+{
+	A(int x)
+	{
+
+	}
+}
+C:\Users\HP\Desktop\niss java>javac A.java
+
+C:\Users\HP\Desktop\niss java>javap A
+Compiled from "A.java"
+public class A {
+  A(int);
+}
+
+
+
+
+class A
+{
+	A()
+	{
+         System.out.println("AC");
+	}
+}
+class Test
+{
+
+	public static void main(String arg[])
+	{
+        A ob=new A();
+        A obj=new A();
+        A obj1=new A();
+        new A();  //nameless object 
+	}
+}
+
+o/p:
+C:\Users\HP\Desktop\niss java>java Test
+AC
+AC
+AC
+AC
+
+
+class A
+{
+	void A()
+	{
+         System.out.println("AC");
+	}
+}
+class Test
+{
+
+	public static void main(String arg[])
+	{
+        A ob=new A();
+        A obj=new A();
+        A obj1=new A();
+        new A();  //nameless object 
+	}
+}
+
+o/p:
+C:\Users\HP\Desktop\niss java>javac A.java
+
+C:\Users\HP\Desktop\niss java>java Test
+
+C:\Users\HP\Desktop\niss java>javap A
+Compiled from "A.java"
+class A {
+  A();
+  void A();
+}
+
+
+
+
+
+class A
+{
+	int x,y;  //instance variable
+	A()
+	{
+      System.out.println(x+"  "+y); // 0  0
+      x=10;
+      y=20;  
+	}
+}
+class Test
+{
+
+	public static void main(String arg[])
+	{
+        A ob=new A();
+        System.out.println(ob.x+"  "+ob.y);
+         
+	}
+}
+
+o/p:
+0 0
+10 20
+
+
+class A
+{
+	int x,y;  //instance variable
+	A()
+	{
+     
+      x=10;
+      y=20;  
+	}
+}
+class Test
+{
+
+	public static void main(String arg[])
+	{
+        A ob=new A();
+        System.out.println(ob.x+"  "+ob.y);
+        A obj=new A();
+         System.out.println(obj.x+"  "+obj.y);
+         
+	}
+}
+
+o/p:
+10 20
+10 20
+here object output is same 
+
+if we provide differnt object differnt values choose paramemeter constructor
+
+
+
+class A
+{
+	int x,y;  //instance variable
+	A(int p,int q)  //parameter constructor 
+	{
+
+      x=p;
+      y=q;  
+	}
+}
+class Test
+{
+
+	public static void main(String arg[])
+	{
+        A ob=new A(10,20);
+        System.out.println(ob.x+"  "+ob.y);
+        A obj=new A(30,40);
+         System.out.println(obj.x+"  "+obj.y);
+         
+	}
+}
+
+o/p:
+10  20
+30  40
+
+
+
+class A
+{
+	int x,y;  //instance variable
+	A(int x,int y)  //parameter constructor 
+	{
+
+      x=x;
+      y=y;  
+	}
+}
+class Test
+{
+
+	public static void main(String arg[])
+	{
+        A ob=new A(10,20);
+        System.out.println(ob.x+"  "+ob.y);
+        A obj=new A(30,40);
+         System.out.println(obj.x+"  "+obj.y);
+         
+	}
+}
+
+o/p:
+0 0
+0 0
+
+
+this: this refer current object.
+it is implictly refernce variable.
+this point to instance variable.
+
+whenever  local or fomal  name same as instance variable .this is used to instance variable.
+
+
+class A
+{
+	int x,y;  //instance variable
+	A(int x,int y)  //parameter constructor 
+	{
+
+      this.x=x;
+      this.y=y;  
+	}
+}
+class Test
+{
+
+	public static void main(String arg[])
+	{
+        A ob=new A(10,20);
+        System.out.println(ob.x+"  "+ob.y);
+        A obj=new A(30,40);
+         System.out.println(obj.x+"  "+obj.y);
+         
+	}
+}
+
+
+o/p:
+10  20
+30  40
+
+class A
+{
+	int x,y;  //instance variable
+	A(int p,int q)  //parameter constructor 
+	{
+
+      x=p;  //implictly  this.x=p;
+      this.y=q;  
+	}
+}
+class Test
+{
+
+	public static void main(String arg[])
+	{
+        A ob=new A(10,20);
+        System.out.println(ob.x+"  "+ob.y);
+        A obj=new A(30,40);
+         System.out.println(obj.x+"  "+obj.y);
+         
+	}
+}
+
+o/p:
+10  20
+30  40
+
+
+
+constructor overloading
+__________________________
+
+more than constructor in single class .
+class A
+{
+	int x,y;  //instance variable
+	A(int x,int y)  //parameter constructor 
+	{
+
+      this.x=x; //implictly  this.x=p;
+      this.y=y;  
+	}
+	A()  //default constructor
+	{
+		x=1;
+		y=2;
+
+	}
+}
+class Test
+{
+
+	public static void main(String arg[])
+	{
+        A ob=new A(10,20);
+        System.out.println(ob.x+"  "+ob.y);
+        A obj=new A();
+         System.out.println(obj.x+"  "+obj.y);
+         
+	}
+}
+
+C:\Users\HP\Desktop\niss java>java Test
+10  20
+1  2
+
+
+
+
+
+
+class Rectangle
+{
+	private int  L,B;
+	Rectangle(int L,int B)  //parameter constructor 
+	{
+         this.L=L;
+         this.B=B;
+    }
+	Rectangle()  //default constructor
+	{
+		L=1;
+		B=1;
+	}
+    void disp()
+    {
+    	System.out.println("length="+L);
+    	System.out.println("breadth="+B);
+    }
+    void area()
+    {
+    	int ar;
+    	ar=L*B;
+    	System.out.println("area of rectangle="+ar);
+    }
+    int perimeter()
+    {
+    	int pr;
+    	pr=2*(L+B);
+    	return pr;
+    }
+}
+class Test
+{
+
+	public static void main(String arg[])
+	{
+      Rectangle r1=new Rectangle();
+      r1.disp();
+      r1.area();
+      Rectangle r2=new Rectangle(4,5);
+       r2.disp();
+       r2.area();
+       System.out.println("perimeter of rectangle="+r2.perimeter());  
+	}
+}
+
+C:\Users\HP\Desktop\niss java>java Test
+length=1
+breadth=1
+area of rectangle=1
+length=4
+breadth=5
+area of rectangle=20
+perimeter of rectangle=18
+
+
+
+class Square
+{
+	private int  L;
+	Square(int L)  //parameter constructor 
+	{
+         this.L=L;
+         
+    }
+	Square()  //default constructor
+	{
+		L=1;
+	
+	}
+    void disp()
+    {
+    	System.out.println("length="+L);
+    
+    }
+    void area()
+    {
+    	int ar;
+    	ar=L*L;
+    	System.out.println("area of square="+ar);
+    }
+    int perimeter()
+    {
+    	int pr;
+    	pr=4*L;
+    	return pr;
+    }
+}
+class Test
+{
+
+	public static void main(String arg[])
+	{
+      Square s1=new Square();
+      s1.disp();
+      s1.area();
+      Square s2=new Square(4);
+       s2.disp();
+       s2.area();
+       System.out.println("perimeter of square ="+s2.perimeter());  
+	}
+}
+
+
+
+pojo  class   setter and getter method  
+______
+
+setter method   (initlize and modify)
+__________________
+private datatype  varaiable;
+
+void  setVariable(datatype  varaiable)
+{
+	this.varaiable=variable;
+}
+
+private String name;
+void setName(String name)
+{
+	this.name=name;
+}
+
+private double mark;
+
+void setMark(double mark)
+{
+	 this.mark=mark;
+}
+
+
+getter method 
+____________________
+private datatype  varaiable;
+
+
+datatype/returntype  getVariable()
+{
+	return this.varaiable;
+}
+
+private String name;
+
+String getName()
+{
+	return this.name; // return name;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.util.*;
+class Student
+{
+		private String name;  //instance variable   non static datamemeber
+	 private  int rollno;
+	  private  double mark;
+	Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	Student(String name, int rollno, double mark) {
+		super();
+		this.name = name;
+		this.rollno = rollno;
+		this.mark = mark;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getRollno() {
+		return rollno;
+	}
+	public void setRollno(int rollno) {
+		this.rollno = rollno;
+	}
+	public double getMark() {
+		return mark;
+	}
+	public void setMark(double mark) {
+		this.mark = mark;
+	}
+	
+	  
+	
+}
+class Test
+{
+ 
+	public static void main(String arg[])
+	{
+	    
+	   Student s=new Student("muna",1,90);
+	  s.setName("muna das");
+	  System.out.println("name="+s.getName());
+	  System.out.println("rollno="+s.getRollno());
+	  System.out.println("mark="+s.getMark());
+	  Student s1=new Student();
+	  s1.setName("kuna");
+	  s1.setRollno(2);
+	  s1.setMark(80);
+	  System.out.println("name="+s1.getName());
+	  System.out.println("rollno="+s1.getRollno());
+	  System.out.println("mark="+s1.getMark());
+	}
+}
+
+
+
+o/p:
+name=muna das
+rollno=1
+mark=90.0
+name=kuna
+rollno=2
+mark=80.0

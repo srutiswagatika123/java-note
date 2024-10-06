@@ -1,0 +1,175 @@
+Var- arg methods (variable no of argument methods) (1.5)
+Until 1.4v we can’t declared a method with variable no. Of arguments. If there is a
+change in no of arguments compulsory we have to define a new method. This approach
+increases length of the code and reduces readability. But from 1.5 version onwards we
+can declare a method with variable no. Of arguments such type of methods are called
+var-arg methods.
+We can declare a var-arg method as follows.
+
+We can call or invoke this method by passing any no. Of int values including zero
+number.
+Example:
+class Test
+{
+public static void methodOne(int... x)
+{
+System.out.println("var-arg method");
+}
+public static void main(String[] args)
+{
+methodOne();
+methodOne(10);
+methodOne(10,20,30);
+}
+}
+Output:
+var-arg method
+var-arg method
+var-arg method
+
+2
+Internally var-arg parameter implemented by using single dimensional array hence
+within the var-arg method we can different arguments by using index.
+class Test
+{
+public static void sum(int... x)
+{
+int total=0;
+for(int i=0;i<x.length;i++)
+{
+total=total+x[i];
+}
+System.out.println("The sum :"+total);
+}
+public static void main(String[] args)
+{
+sum();
+sum(10);
+sum(10,20);
+sum(10,20,30,40);
+}
+}
+Output:
+The sum: 0
+The sum: 10
+The sum: 30
+The sum: 100
+Case 1:
+Which of the following var-arg method declarations are valid?
+1) methodOne(int... x)(valid)
+2) methodOne(int ...x)(valid)
+3) methodOne(int x...)(invalid)
+4) methodOne(int. ..x)(invalid)
+5) methodOne(int .x..)(invalid)
+Case 2: We can mix var-arg parameter with general parameters also.
+Example:
+methodOne(int a,int... b)
+methodOne(String s,int... x) valid
+
+3
+Case 3: if we mix var-arg parameter with general parameter then var-arg parameter should be
+the last parameter.
+Example:
+methodOne(int... a,int b)(invalid)
+Case 4: We can take only one var-arg parameter inside var-arg method
+Example:
+methodOne(int... a,int... b)(invalid)
+Case 5:
+In general var-arg method will get least priority that is if no other method matched then
+only var-arg method will get the chance this is exactly same as default case inside a
+switch.
+class Test
+{
+public static void methodOne(int i)
+{
+System.out.println("general method");
+}
+public static void methodOne(int... i)
+{
+System.out.println("var-arg method");
+}
+public static void main(String[] args)
+{
+methodOne();//var-arg method
+methodOne(10,20);//var-arg method
+methodOne(10);//general method
+}
+}
+Case 6: For the var-arg methods we can provide the corresponding type array as argument.
+Example:
+Class Test
+{
+
+{
+System.out.println("var-arg method");
+}
+public static void main(String[] args)
+{
+methodOne(new int[]{10,20,30});//var-arg method
+}
+}}
+
+
+4
+Case 7:
+Same name same signature not allow
+class Test
+{
+public void methodOne(int[] i){}
+public void methodOne(int... i){}
+}
+o/p:error
+
+Single Dimensional Array Vs Var-Arg Method:
+Case 1: Wherever single dimensional array present we can replace with var-arg parameter
+
+Case 2: Wherever var-arg parameter present we can’t replace with single dimensional array.
+
+Example:
+class Test
+{
+public static void methodOne(int[]... x)
+{
+for(int[] a:x)
+{
+System.out.println(a[0]);
+}
+}
+public static void main(String[] args)
+{
+int[] l={10,20,30};
+int[] m={40,50};
+methodOne(l,m);
+}
+}
+Output:
+10
+40
+
+Mobno-9090519502 by jitusir lecture-20
+
+5
+class Test
+{
+public static void methodOne(int[]... x)
+{
+for(int[] a:x)
+{
+for(int i=0;i<a.length;i++)
+System.out.print(a[i]+" ");
+System.out.println();
+}
+}
+public static void main(String[] args)
+{
+int[] l={10,20,30};
+methodOne(l);
+int[] m={40,50};
+methodOne(l,m);
+}
+}
+C:\Users\jitu\Desktop>javac Test.java
+C:\Users\jitu\Desktop>java Test
+10 20 30
+10 20 30
+40 50

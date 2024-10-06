@@ -1,0 +1,1329 @@
+inheritance means reuseablity and extensiblity.
+To create new class  from existing class(predefined class or userdefined class)
+
+existing class is known as parent class/super class /base class
+new class is known as   child class/sub class/derive class.
+
+using extends keyword we create inheritance.
+
+syntax:
+
+class childclassname  extends  parentclassname
+{
+	
+}
+
+
+inheritance are 5 types
+(1)single inheritance
+(2)multilevel inheritance
+(3)heriachial   
+(4)multiple
+(5)hybrid     
+
+single inheritance example
+________________________
+
+class A
+{
+	int x=10;
+	void f1()
+	{
+	   System.out.println("f1 method ");
+	}
+}
+class B  extends A
+{
+    int y=20;
+     void f2()
+     {
+        System.out.println("f2 method ");
+     }
+	
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	    ob.f1();
+	    ob.f2();
+	    System.out.println(ob.x);
+	    System.out.println(ob.y);
+	}
+}
+
+o/p:
+f1 method
+f2 method
+10
+20
+Here above B class(child class) reference ob access both A class data and method also B class data and method.
+class A
+{
+	int x=10;
+	void f1()
+	{
+	   System.out.println("f1 method ");
+	}
+}
+class B  extends A
+{
+    int y=20;
+     void f2()
+     {
+         f1();
+        System.out.println("f2 method ");
+        System.out.println(x);
+     }
+	
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	    ob.f2();
+	    System.out.println(ob.y);
+	}
+}
+
+o/p:
+f1 method
+f2 method
+10
+20
+
+Here inside  B class(child class)  access both A class data and method .
+
+single inheritance example
+________________________
+
+class A
+{
+	int x=10;
+	void f1()
+	{
+	   System.out.println("f1 method ");
+	}
+}
+class B  extends A
+{
+    int y=20;
+     void f2()
+     {
+        System.out.println("f2 method ");
+     }
+	
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    A ob=new A();
+	    ob.f1();
+	   // ob.f2(); error
+	    System.out.println(ob.x);
+	    //System.out.println(ob.y); error
+	}
+}
+
+o/p:
+f1 method
+10
+Here A class(Parent class) reference ob access only A class data and method  not acess B class data and method.
+
+
+private data and method never inheritance.
+____________________________________________
+we can not access parent class private data and method inside child class
+and also child class object
+class A
+{
+	private int x=10;
+	private void f1()
+	{
+	   System.out.println("f1 method ");
+	}
+}
+class B  extends A
+{
+    int y=20;
+     void f2()
+     {
+        System.out.println("f2 method ");
+     }
+	
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	   // ob.f1();  error
+	    ob.f2();
+	   // System.out.println(ob.x); error
+	    System.out.println(ob.y);
+	}
+}
+
+o/p:
+error
+C:\Users\HP\Desktop\inheritance>javac 1.java
+1.java:24: error: cannot find symbol
+            ob.f1();
+              ^
+  symbol:   method f1()
+  location: variable ob of type B
+1.java:26: error: x has private access in A
+            System.out.println(ob.x);
+                                 ^
+2 errors
+
+
+class A
+{
+	private int x=10;
+	private void f1()
+	{
+	   System.out.println("f1 method ");
+	}
+}
+class B  extends A
+{
+    int y=20;
+     void f2()
+     {
+     	   //f1(); error  private data not acess in child class
+     	   //System.out.pritln(x); error
+        System.out.println("f2 method ");
+     }
+	
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	    ob.f2();
+	    
+	}
+}
+
+o/p:
+error
+
+1.java:14: error: cannot find symbol
+           f1();
+           ^
+  symbol:   method f1()
+  location: class B
+1.java:15: error: x has private access in A
+           System.out.pritln(x);
+                             ^
+1.java:15: error: cannot find symbol
+           System.out.pritln(x);
+                     ^
+  symbol:   method pritln(int)
+  location: variable out of type PrintStream
+3 errors
+
+Here above inside  B class(child class)  not access  A class private data and method.
+
+
+whenever B class Object is create both parent class and child class
+private defalut protected and public memory allocate.
+but not access private of parent class in child class and chils class Object
+
+solution :
+rivate data of parent class indirectly possible create default/protected/public method in parent class. 
+
+
+class A
+{
+	private int x=10;
+	private void f1()
+	{
+	   System.out.println("f1 method ");
+	}
+	void f3()
+	{
+		f1();
+		System.out.println(x);
+
+	}
+}
+class B  extends A
+{
+    int y=20;
+     void f2()
+     {
+     	//f1(); error
+     	  
+     	   f3();
+      System.out.println("f2 method ");
+     }
+	
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	    ob.f2();
+	    System.out.println(ob.y);
+	}
+}
+
+
+o/p:
+
+f1 method
+10
+f2 method
+20
+
+
+class A
+{
+	private int x=10;
+	private void f1()
+	{
+	   System.out.println("f1 method ");
+	}
+	void f3()
+	{
+		f1();
+		System.out.println(x);
+
+	}
+}
+class B  extends A
+{
+    int y=20;
+     void f2()
+     {
+     	//f1(); error
+     	  System.out.println("f2 method ");
+     	 
+      
+     }
+	
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	    
+	    ob.f3();
+	    ob.f2();
+	    System.out.println(ob.y);
+
+	}
+}
+
+o/p:
+f1 method
+10
+f2 method
+20
+
+
+
+
+class A
+{
+    int x;
+
+}
+class B  extends A
+{
+     int y;
+    
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	    System.out.println(ob.x);
+	    System.out.println(ob.y);
+	    
+	   
+	}
+}
+
+
+o/p:
+0
+0
+
+class A
+{
+   private int x;
+
+}
+class B  extends A
+{
+    private int y;
+    
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	    System.out.println(ob.x);
+	    System.out.println(ob.y);
+	    
+	   
+	}
+}
+
+
+o/p:
+1.java:17: error: x has private access in A
+            System.out.println(ob.x);
+                                 ^
+1.java:18: error: y has private access in B
+            System.out.println(ob.y);
+                                 ^
+2 errors
+
+solution create method both class.
+
+
+class A
+{
+   private int x;
+   void show()
+   {
+   	System.out.println(x);
+   }
+
+}
+class B  extends A
+{
+    private int y;
+    void disp()
+    {
+    	System.out.println(y);
+    }
+    
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	    //System.out.println(ob.x); error
+	   // System.out.println(ob.y); error
+	    ob.show();
+	    ob.disp();
+	    
+	   
+	}
+}
+
+o/p:
+0
+0
+
+class A
+{
+   private int x;
+   void initA()
+   {
+   	x=10;
+   }
+   void show()
+   {
+   	System.out.println(x);
+   }
+
+}
+class B  extends A
+{
+    private int y;
+    void initB()
+    {
+    	y=20;
+    }
+    void disp()
+    {
+    	System.out.println(y);
+    }
+    
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	   ob.initA();
+	   ob.initB();
+	    ob.show();
+	    ob.disp();
+	    
+	   
+	}
+}
+
+
+o/p:
+10
+20
+above program initlize x and y using method initA() and initB();
+
+class A
+{
+   private int x;
+   void initA()
+   {
+   	x=10;
+   }
+   void show()
+   {
+   	System.out.println(x);
+   }
+
+}
+class B  extends A
+{
+    private int y;
+    void initB()
+    {
+    	y=20;
+    }
+    void disp()
+    {
+    	System.out.println(y);
+    }
+    
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	   //ob.initA();
+	   //ob.initB();
+	    ob.show();
+	    ob.disp();
+	    
+	   
+	}
+}
+
+Here we write initA() and initB() logic for initlization .
+but not calling methdo initA() and intB() x and y value not initlize.
+
+This problem solve  using constructor.
+
+constructor in inheritance
+__________________________
+class A
+{
+   A()
+   {
+   	System.out.println("A zero argument Constructor ");
+   }
+   A(int x)
+   {
+   		System.out.println("A parameter Constructor ");
+   }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   A ob=new A();
+	   A obj=new A(10);
+	   
+	}
+}
+
+
+o/p:
+A zero argument Constructor
+A parameter Constructor
+
+
+class A
+{
+   A()
+   {
+   	System.out.println("A zero argument Constructor ");
+   }
+  
+}
+class B extends A
+{
+
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	}
+}
+
+o/p:
+A zero argument Constructor
+
+
+class A
+{
+   A()
+   {
+   	System.out.println("A zero argument Constructor ");
+   }
+  
+}
+class B extends A
+{
+    B()
+    {
+    	 super(); //it call parent class zero argument constructor
+    	          //by default avliable any constructor
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	}
+}
+
+
+o/P;
+A zero argument Constructor
+
+
+class A
+{
+   A()
+   {
+   	System.out.println("A zero argument Constructor ");
+   }
+  
+}
+class B extends A
+{
+    B()
+    {
+    	    //by default super()  avaliable every constructor first line.
+    	    // it call parent class zero argument constructor
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	}
+}
+
+
+o/P:
+A zero argument Constructor
+
+class A
+{
+   A()
+   {
+   	System.out.println("A zero argument Constructor ");
+   }
+  
+}
+class B extends A
+{
+    B()
+    {
+    	 //super() bt default avaliable
+    	 System.out.println("B zero argument Constructor ");  
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	}
+}
+
+o/p:
+A zero argument Constructor
+B zero argument Constructor
+
+class A
+{
+   A()
+   {
+   	System.out.println("A zero argument Constructor ");
+   }
+  
+}
+class B extends A
+{
+    B()
+    {
+
+    	 System.out.println("B zero argument Constructor ");  
+    // super(); error  call to super must be first statement in constructor
+         
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	}
+}
+o/p:
+A zero argument Constructor
+B zero argument Constructor
+
+
+constructor never inheritance .beacause constructor used initlize own class
+data member
+____________________________________________________________________________
+
+class A
+{
+   private int x;
+   A()
+   {
+   	x=10;
+   }
+   void show()
+   {
+   	System.out.println(x);
+   }
+
+}
+class B  extends A
+{
+    private int y;
+    B()
+    {
+    	y=20;
+    }
+    void disp()
+    {
+    	System.out.println(y);
+    }
+    
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	    ob.show();
+	    ob.disp();
+	    
+	   
+	}
+}
+
+o/p:
+10
+20
+
+
+class A
+{
+   private int x;
+   A()
+   {
+   	x=10;
+   }
+   void show()
+   {
+   	System.out.println(x);
+   }
+
+}
+class B  extends A
+{
+    private int y;
+    B()
+    {
+    	y=20;
+    }
+    void disp()
+    {
+    	System.out.println(y);
+    }
+    
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	    ob.show();
+	    ob.disp();
+
+	    B obj=new B();
+	    obj.show();
+	    obj.disp();
+	    
+	   
+	}
+}
+
+Here all object values are same.
+10
+20
+10
+20
+
+if we provide differnet object differnt values choose parameter constructor
+
+
+class A
+{
+   A(int x)
+   {
+   	System.out.println("para  Constructor ");
+   }
+  
+}
+class B extends A
+{
+    
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	}
+}
+
+
+o/p:
+error 
+becuase every child class constructor alway cll parent class zero argument constructor.
+in parent class we write parameter constructor.whenever we write parameter 
+constructor compiler does not provide default constructor.
+
+
+
+solution
+______________
+in child class you must be write default or parameter constructor.
+That first line we write super(arg).
+class A
+{
+   A(int x)
+   {
+   	System.out.println("para  Constructor "+x);
+   }
+  
+}
+class B extends A
+{
+    B()
+    {
+    	super(10);
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	}
+}
+
+o/p:
+para  Constructor 10
+
+
+
+class A
+{
+   A(int x)
+   {
+   	System.out.println("para  Constructor "+x);
+   }
+  
+}
+class B extends A
+{
+    B()
+    {
+    	super(10);
+    	System.out.println("zero argument constructor B class ");
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	}
+}
+
+
+o/p:
+para  Constructor 10
+zero argument constructor B class
+
+
+
+class A
+{
+   A(int x)
+   {
+   	System.out.println("para  Constructor "+x);
+   }
+  
+}
+class B extends A
+{
+    B(int x,int y)
+    {
+    	
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   //B ob=new B(); error becuase B class parameter constructor
+	   B obj=new B(10,20);
+	}
+}
+
+
+o/p:
+error
+B class paremeter constructor A class zero argument constructor
+but we write paraemeter constrcutor.
+
+
+solution:
+
+inisde B class paremeter constructor we call A class parameter constructor
+super(args);
+
+
+
+  class A
+{
+   A(int x)
+   {
+   	System.out.println("para  Constructor "+x);
+   }
+  
+}
+class B extends A
+{
+    B(int x,int y)
+    {
+    	super(x);
+    	System.out.println("child  Constructor "+y);
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   //B ob=new B(); error becuase B class parameter constructor
+	   B obj=new B(10,20);
+	}
+}
+o/p:
+para  Constructor 10
+child  Constructor 20
+
+class A
+{
+   A(int x)
+   {
+   	System.out.println("A class para  Constructor "+x);
+   }
+    A()
+    {
+    	System.out.println("A class zero argument constructor ");
+    }
+}
+class B extends A
+{
+    B(int x,int y)
+    {
+    	super(x);
+    	System.out.println("child  Constructor "+y);
+    }
+    B()
+    {
+    	 //super() by default
+    	System.out.println("B class zero argument constructor ");
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B(); 
+	   B obj=new B(10,20);
+	}
+}
+
+
+o/p:
+A class zero argument constructor
+B class zero argument constructor
+A class para  Constructor 10
+child  Constructor 20
+
+
+
+
+class A
+{
+   private int x;
+   A()
+   {
+   	x=10;
+   }
+   A(int x)
+   {
+     this.x=x;
+   }
+   void show()
+   {
+   	System.out.println(x);
+   }
+
+}
+class B  extends A
+{
+    private int y;
+    B()
+    {
+    	y=20;
+    }
+    B(int x,int y)
+    {
+    	super(x);
+      this.y=y;
+    }
+    void disp()
+    {
+    	System.out.println(y);
+    }
+    
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    B ob=new B();
+	    ob.show(); //10
+	    ob.disp();//20
+
+	    B obj=new B(30,40);
+	    obj.show();//30
+	    obj.disp();//40
+	    
+	   
+	}
+}
+
+
+o/p:
+10
+20
+30
+40
+
+super(): it call parent class zero argument constructor.
+		every constructor first line by default avliable.
+super(args): it call paraent class parametr constructor.
+              must be first line inside constructor.
+
+this(): it call own class default constructor.
+		it must be firs line inside constructor
+this(args): it call own class parameter constructor .
+	it must be firs line inside constructor
+class A
+{
+   A(int x)
+   {
+   	this();
+   	System.out.println("A class para  Constructor "+x);
+   }
+    A()
+    {
+    	System.out.println("A class zero  constructor ");
+    }
+}
+class B extends A
+{
+    B(int x,int y)
+    {
+    	super(x);
+    	System.out.println("B para  Constructor "+y);
+    }
+    B()
+    {
+    	System.out.println("B class zero constructor ");
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B(10,20);
+	}
+}
+
+o/p:
+A class zero  constructor
+A class para  Constructor 10
+B para  Constructor 20
+
+class A
+{
+   A(int x)
+   {
+   	this();
+   	System.out.println("A class para  Constructor "+x);
+   }
+    A()
+    {
+    	System.out.println("A class zero  constructor ");
+    }
+}
+class B extends A
+{
+    B(int x,int y)
+    {
+    	super(x);
+    	System.out.println("B para  Constructor "+y);
+    }
+    B()
+    {
+    	this(10,20);
+    	System.out.println("B class zero constructor ");
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	}
+}
+
+A class zero  constructor
+A class para  Constructor 10
+B para  Constructor 20
+B class zero constructor
+
+
+
+class A
+{
+   int x=10;
+}
+class B extends A
+{
+    int y=20;
+    void disp()
+    {
+    	System.out.println(x);//parent x
+    	System.out.println(y);//child y
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	   ob.disp();
+	}
+}
+
+
+o/p:
+10
+20
+
+
+class A
+{
+   int x=10;
+}
+class B extends A
+{
+    int x=20;
+    void disp()
+    {
+    	System.out.println(x);//child x
+    	
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	   ob.disp();
+	}
+}
+
+
+
+o/p:
+20
+
+
+super
+___________
+it is parent refenrce.
+whenever parent and child data and method names are same .
+inside child class any method and constructor we can acess parent 
+data and method using super keyword.
+
+class A
+{
+   int x=10;
+}
+class B extends A
+{
+    int x=20;
+    void disp()
+    {
+    	System.out.println(x);//child x
+    	System.out.println(super.x);//parent x
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	   ob.disp();
+	}
+}
+
+
+o/p:
+20
+10
+
+class A
+{
+   int x=10;//instance variable parent
+}
+class B extends A
+{
+    int x=20;//instance variable child
+    void disp()
+    {
+    	int x=5;//local variable
+    	System.out.println(x);//local x   5
+
+    	System.out.println(this.x);//own  x  20
+    	System.out.println(super.x); //parentx 10
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	   ob.disp();
+	}
+}
+
+
+o/p:
+5
+20
+10
+
+
+super:
+whenever parent and child data and method are same in child class acess
+parent data and method using super.
+
+
+this:
+whenever instance and local variable names are same .
+using this we can acess insance variable 
+
+class A
+{
+   void disp()
+   {
+   	System.out.println("disp A class");
+   }
+}
+class B extends A
+{
+    void disp()
+    {
+    	System.out.println("disp B class");
+    }
+    void show()
+    {
+    	 disp(); //B class disp
+    	 super.disp();
+    }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+	   B ob=new B();
+	   ob.show();
+	}
+}
+
+o/P
+disp B class
+disp A class

@@ -1,0 +1,531 @@
+while loop syntax:
+initlization
+while(condtion)
+{
+	repeated stmt write once;
+	inc/dec;
+}
+
+//wap dispaly 1 to 5
+int i;
+i=1;
+while(i<6)
+{
+	sop(i);
+	i++;
+}
+
+
+do while loop syntax:
+initlization
+do
+{
+	repeated stmt write once;
+	inc/dec;
+}while(condtion);
+
+
+//wap dispaly 1 to 5 using do while loop
+int i;
+i=1;
+do
+{
+	sop(i);
+	i++;
+}while(i<6);
+
+
+//wap dispaly 5 to 1 using do while loop
+int i;
+i=5;
+do
+{
+	sop(i);
+	i--;
+}while(i>0);
+
+
+//wap dispaly break  using do while loop
+int i;
+i=1;
+do
+{
+	sop(i);
+	i++;
+	break;
+}while(i<6);
+
+
+o/p:
+1
+
+
+//wap dispaly break  using do while loop
+int i;
+i=1;
+do
+{
+	sop(i);
+	i++;
+	if(i>=3)
+	{
+		break;
+	}
+	sop("hi");
+}while(i<6);
+sop("bye");
+
+o/p:
+i=1,2,3
+1
+hi
+2
+bye
+
+
+//wap dispaly continue  using do while loop
+int i;
+i=1;
+do
+{
+	sop(i);
+	i++;
+	if(i>=3)
+	{
+		continue;
+	}
+	sop("hi");
+}while(i<6);
+sop("bye");
+
+o/p:
+i=1,2,3,4,5,6
+1
+hi
+2
+3
+4
+5
+bye
+
+
+
+//wap dispaly continue  using do while loop
+int i;
+i=1;
+do
+{
+	sop(i);
+	i++;
+	if(i<=3)
+	{
+		continue;
+	}
+	sop("hi");
+}while(i<6);
+sop("bye");
+
+o/p:
+
+
+
+sop("A");
+while(false)
+{
+	sop("B");
+}
+sop("C");
+
+o/p:
+A
+C
+
+
+sop("A");
+do{
+	sop("B");
+}while(false);
+sop("C");
+
+o/p:
+A
+B
+C
+
+
+initlization
+for(;condtion;)
+{
+	repeated stmt write once;
+	inc/dec;
+}
+
+or
+
+for(initlization;condtion;)
+{
+	repeated stmt write once;
+	inc/dec;
+}
+
+or
+initlization
+for(;condtion;inc/dec)
+{
+	repeated stmt write once;
+	
+}
+
+or
+
+for(initlization;condtion;inc/dec)
+{
+	repeated stmt write once;
+	
+}
+
+
+//wap display 1 to 5
+
+int i;
+for(i=1;i<6;i++)
+{
+	sop(i);
+}
+
+//wap display 10 to 1
+
+int i;
+for(i=10;i>0;i--)
+{
+	sop(i);
+}
+
+
+//20 to 30
+int i;
+for(i=20;i<=30;i++)
+{
+	sop(i);
+}
+
+
+break using for loop
+___________________
+int i;
+for(i=1;i<=5;i++)
+{
+	sop("A");
+	if(i==3)
+	{
+	   break;
+	}
+	sop("B");
+}
+sop("C");
+sop(i)
+
+
+o/p:
+ABABAC3
+
+continue using for loop
+___________________
+int i;
+for(i=1;i<=5;i++)
+{
+	sop("A");
+	if(i==3)
+	{
+	   continue;
+	}
+	sop("B");
+}
+sop("C");
+sop(i)
+
+o/p:
+ABABAABABABC6
+
+
+int i;
+for(i=1;i<=3;i++)
+	sop("A");
+	sop("B");
+
+o/p:
+A
+A
+A
+B
+
+int i;
+for(i=1;i<=3;i++)
+{
+	sop("A");
+	sop("B");
+}
+o/p:
+A
+B
+A
+B
+A
+B
+
+int i;
+for(i=1;i<=3;i++)
+		;
+	sop("A");
+	sop("B");
+
+o/p:
+A
+B
+
+int i;
+for(i=1;i<=3;i++);
+	sop("A");
+	sop("B");
+
+int i;
+for(i=1;i<=6;i++)
+ sop(i);
+ o/p:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+
+ int i;
+for(i=1;i<=6;i++);
+ sop(i);
+ o/p:
+ 7
+
+
+
+ int i;
+for(i=1;i<=6;i+2)
+ sop(i);
+
+o/p:
+error
+
+
+ int i;
+for(i=1;i<=6;i=i+2)
+ sop(i);
+
+
+o/p:
+1
+3
+5
+
+
+nested loop
+__________
+int i,j;
+
+i=1;
+while(i<=3)
+{
+	sop("A");
+	j=1;
+	while(j<=3)
+	{
+		sop("B");
+	    j=j+1;
+	}
+	i=i+1;
+	sop("C");
+}
+sop("D");
+
+o/p:
+A
+B
+B
+B
+C
+A
+B
+B
+B
+C
+A
+B
+B
+B
+C
+D
+
+
+
+int i,j;
+i=1;
+while(i<=3)
+{
+	j=1;
+	while(j<=3)
+	{
+		sop(i+" "+j);//print(i,j)
+	    j=j+1;
+	}
+	i=i+1;	
+}
+
+o/p:
+1  1
+1  2
+1  3
+2 1
+2 2
+2 3
+3 1
+3 2
+3 3
+
+
+
+int i,j;
+i=1;
+do
+{
+	j=1;
+	while(j<=3)
+	{
+		sop(i+" "+j);//print(i,j)
+	    j=j+1;
+	}
+	i=i+1;	
+}while(i<=3);
+
+o/p:
+1  1
+1  2
+1  3
+2 1
+2 2
+2 3
+3 1
+3 2
+3 3
+
+int i,j;
+i=1;
+do
+{
+	j=1;
+	do
+	{
+		sop(i+" "+j);//print(i,j)
+	    j=j+1;
+	}while(j<=3);
+	i=i+1;	
+}while(i<=3);
+
+
+o/p:
+1  1
+1  2
+1  3
+2 1
+2 2
+2 3
+3 1
+3 2
+3 3
+
+int i,j;
+for(i=1;i<=3,i=i+1)
+{
+	
+	for(j=1;j<=3;j=j+1)
+	{
+		sop(i+" "+j);
+	   
+	}
+		
+}
+
+
+o/p:
+1  1
+1  2
+1  3
+2 1
+2 2
+2 3
+3 1
+3 2
+3 3
+
+
+break using nested loop
+___________________________
+
+int i,j;
+for(i=1;i<=3,i=i+1)
+{
+	
+	for(j=1;j<=3;j=j+1)
+	{
+		sop(i+" "+j);
+	   break;
+	}
+		
+}
+
+o/p:
+1 1
+2 1
+3 1
+
+break using nested loop
+___________________________
+
+int i,j;
+for(i=1;i<=3,i=i+1)
+{
+	
+	for(j=1;j<=3;j=j+1)
+	{
+		sop(i+" "+j);
+	   break;
+	}
+	break;
+		
+}
+
+o/p:
+1 1
+
+
+
+continue using nested loop
+___________________________
+
+int i,j;
+for(i=1;i<=3,i=i+1)
+{
+	
+	for(j=1;j<=3;j=j+1)
+	{
+	    if(j<=2)
+	    {
+	      continue;
+	    }
+		sop(i+" "+j);
+	   
+	}
+	     
+}
+
+o/p
+1 3
+2 3
+3 3

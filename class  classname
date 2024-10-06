@@ -1,0 +1,656 @@
+class  classname
+{
+	 static           method/datamember/class/block;
+	 non static     method/datamember/class/block;
+}
+
+classname : userdefined datatype
+
+inside class static memory occupy automatically whenever 
+class is loading
+
+java classname 
+
+
+static  releated to class 
+nonstatic realted to object
+
+How to create object
+_______________________
+new  classname();   //nameless object
+
+
+classname objectrefence;
+objectrefenrce=new classname();
+
+or
+classname objctrefence=new classname();  
+
+
+
+inside class  static method call another static using 3 way
+__________________________________________________________
+(1)directly
+(2)by classname
+(3)by Object
+   or
+(4)by object refernce
+
+
+
+public class Test {
+      static void show()
+      {
+    	  System.out.println("show static method ");
+      }
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         System.out.println("main method ");
+         show();// by directly  better
+         Test.show();// by classname
+         new Test().show(); //by nameless object 
+         Test t=new Test();
+         t.show();//by object refernce        
+	}
+}
+
+
+
+
+inside class static call non static 
+(1)by namelessObject
+(2)by object refence
+
+public class Test {
+      void show()
+      {
+    	  System.out.println("show nonstatic method ");
+      }
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         System.out.println("main method ");
+       //  show();// by directly  better error
+        // Test.show();// by classname  error
+         new Test().show(); //by nameless object 
+         Test t=new Test();
+         t.show();//by object refernce 
+         
+         
+	}
+
+}
+
+
+one class static method call another class static method ,...
+
+(1)by classname (better)
+(2)by nameless object
+(3)by objectrefernce
+
+class A
+{
+	 static void show()
+     {
+   	  System.out.println("show static method ");
+     }
+}
+public class Test {
+     
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         System.out.println("main method ");
+       //  show();  error
+        A.show(); // by classname 
+        System.out.println(Math.PI);
+        System.out.println(Math.pow(2,3));
+         new A().show(); //not good
+         A ob=new A();
+         ob.show(); //by object refernce 
+         
+	}
+
+}
+
+any class static method acess non static method 
+(1)by object
+(2)by object reference
+import java.util.Scanner;
+class A
+{
+	 void show()
+     {
+   	  System.out.println("show static method ");
+     }
+}
+public class Test {
+     
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         System.out.println("main method ");
+       //  show();  error
+        //A.show(); //error by classname 
+       
+         new A().show(); //by nameless object
+         A ob=new A();
+         ob.show(); //by object refernce 
+         Scanner sc=new Scanner(System.in);
+         int no=sc.nextInt();
+         
+	}
+
+}
+
+
+inside class non static method call another non static method ,
+static method 
+(1)directly 
+(2)by object possible (not requried)
+import java.util.Scanner;
+
+public class Test {
+     
+	void f1()
+	{
+		System.out.println("f1 non static method ");
+		f2(); //directly 
+		f3();// directly
+		
+	}
+	void f2()
+	{
+		System.out.println("f2 non static method ");
+	}
+	static void f3()
+	{
+		System.out.println("f3 static method ");
+	}
+	public static void main(String[] args) {
+		
+        Test t=new Test();
+        t.f1();
+        
+	}
+
+}
+
+
+
+
+
+
+import java.util.Scanner;
+class A
+{
+	 void f2()
+		{
+			System.out.println("f2 non static method ");
+		}
+		static void f3()
+		{
+			System.out.println("f3 static method ");
+		}
+}
+public class Test {
+     
+	void f1()
+	{
+		System.out.println("f1 non static method ");
+		A ob=new A();
+		ob.f2(); //directly 
+		A.f3();// directly
+		
+	}
+	
+	public static void main(String[] args) {
+		
+        Test t=new Test();
+        t.f1();
+        
+	}
+
+}
+
+
+
+
+//wap stroe one student name rollno mark initlize and  display without oops 
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	   String name;
+	   int rollno;
+	   double mark;
+	   name="muna";
+	   rollno=1;
+	   mark=90.50;
+	   System.out.println("my name="+name);
+	   System.out.println("my rollno="+rollno);
+	   System.out.println("my mark="+mark);
+	}
+}
+
+o/p:
+my name =muna
+my rollno=1;
+my nmark=90.50
+
+
+//wap stroe two student name rollno mark initlize and  display without oops 
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	   String name;
+	   int rollno;
+	   double mark;
+	   name="muna";
+	   rollno=1;
+	   mark=90.50;
+	   System.out.println("my name="+name);
+	   System.out.println("my rollno="+rollno);
+	   System.out.println("my mark="+mark);
+	    name="kuna";
+	   rollno=2;
+	   mark=80.50;
+	   System.out.println("my name="+name);
+	   System.out.println("my rollno="+rollno);
+	   System.out.println("my mark="+mark);
+
+	}
+}
+
+o/p:
+my name =muna
+my rollno=1;
+my nmark=90.50
+my name =kuna
+my rollno=2;
+my nmark=80.50
+here previous data loss  .
+
+slove :
+___________
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	   String name;
+	   int rollno;
+	   double mark;
+	   name="muna";
+	   rollno=1;
+	   mark=90.50;
+	   System.out.println("my name="+name);
+	   System.out.println("my rollno="+rollno);
+	   System.out.println("my mark="+mark);
+	    String name1;
+	   int rollno1;
+	   double mark1;
+	    name1="kuna";
+	   rollno1=2;
+	   mark1=80.50;
+	   System.out.println("my name="+name1);
+	   System.out.println("my rollno="+rollno1);
+	   System.out.println("my mark="+mark1);
+
+	}
+}
+
+o/p:
+my name =muna
+my rollno=1;
+my nmark=90.50
+my name =kuna
+my rollno=2;
+my nmark=80.50
+
+problem  n of student to crate n  of name ,n of rollno and  n of mark .
+
+
+slove these program by using oops.
+
+class Test
+{
+    	String name;  //instance variable   non static datamemeber
+	   int rollno;
+	   double mark;
+	public static void main(String arg[])
+	{
+	   Test t=new Test();
+	   t.name="muna";
+	   t.rollno=1;
+	   t.mark=90.50;
+	   System.out.println("my name="+t.name);
+	   System.out.println("my rollno="+t.rollno);
+	   System.out.println("my mark="+t.mark);
+	   Test t1=new Test();
+	    t1.name="kuna";
+	   t1.rollno=2;
+	   t1.mark=80.50;
+	   System.out.println("my name="+t1.name);
+	   System.out.println("my rollno="+t1.rollno);
+	   System.out.println("my mark="+t1.mark);
+
+	}
+}
+o/p:
+my name =muna
+my rollno=1;
+my nmark=90.50
+my name =kuna
+my rollno=2;
+my nmark=80.50
+
+
+
+class Student
+{
+		String name;  //instance variable   non static datamemeber
+	   int rollno;
+	   double mark;
+}
+class Test
+{
+ 
+	public static void main(String arg[])
+	{
+	   Student t=new Student();
+	   t.name="muna";
+	   t.rollno=1;
+	   t.mark=90.50;
+	   System.out.println("my name="+t.name);
+	   System.out.println("my rollno="+t.rollno);
+	   System.out.println("my mark="+t.mark);
+	   Student t1=new Student();
+	    t1.name="kuna";
+	   t1.rollno=2;
+	   t1.mark=80.50;
+	   System.out.println("my name="+t1.name);
+	   System.out.println("my rollno="+t1.rollno);
+	   System.out.println("my mark="+t1.mark);
+
+	}
+}
+
+o/p:
+my name =muna
+my rollno=1;
+my nmark=90.50
+my name =kuna
+my rollno=2;
+my nmark=80.50
+
+class Student
+{
+		private String name;  //instance variable   non static datamemeber
+	 private  int rollno;
+	  private  double mark;
+}
+class Test
+{
+ 
+	public static void main(String arg[])
+	{
+	   Student t=new Student();
+	   /* error private not acess outside class 
+	   t.name="muna";
+	   t.rollno=1;
+	   t.mark=90.50;
+	   System.out.println("my name="+t.name);
+	   System.out.println("my rollno="+t.rollno);
+	   System.out.println("my mark="+t.mark);
+	   */
+	  
+	}
+}
+
+
+solution :
+sovle problem using method 
+
+class Student
+{
+		private String name;  //instance variable   non static datamemeber
+	 private  int rollno;
+	  private  double mark;
+	  void init()  //init we can write any name   
+	  {
+	  	  name="muna";
+	      rollno=1;
+	     mark=90.50;
+
+	  }
+	  void show()   //display 
+	  {
+
+	  	 	System.out.println("my name="+name);
+	   		System.out.println("my rollno="+rollno);
+	   		System.out.println("my mark="+mark);
+	  }
+}
+class Test
+{
+ 
+	public static void main(String arg[])
+	{
+	   Student t=new Student();
+	     t.init();
+	     t.show();
+	  
+	}
+}
+
+o/p:
+my name =muna
+my rollno=1;
+my nmark=90.50
+
+
+to create 2 object
+______________________
+class Student
+{
+		private String name;  //instance variable   non static datamemeber
+	 private  int rollno;
+	  private  double mark;
+	  void init()  //init we can write any name   
+	  {
+	  	  name="muna";
+	      rollno=1;
+	     mark=90.50;
+
+	  }
+	  void show()   //display 
+	  {
+
+	  	 	System.out.println("my name="+name);
+	   		System.out.println("my rollno="+rollno);
+	   		System.out.println("my mark="+mark);
+	  }
+}
+class Test
+{
+ 
+	public static void main(String arg[])
+	{
+	   Student t=new Student();
+	     t.init();
+	     t.show();
+	     //another object
+	    Student t1=new Student();
+	    t1.init();
+	    t1.show();
+	  
+	}
+}
+
+
+o/p:
+her all object out same 
+
+o/p:
+my name =muna
+my rollno=1;
+my nmark=90.50
+my name =muna
+my rollno=1;
+my mark=90.50
+
+(1)slove take input from keyboard 
+
+import java.util.*;
+class Student
+{
+		private String name;  //instance variable   non static datamemeber
+	 private  int rollno;
+	  private  double mark;
+	  void init()  //init we can write any name   
+	  {
+	      Scanner sc=new Scanner(System.in);
+	      System.out.println("enter name roll and mark");
+	  	  name=sc.next();
+	      rollno=sc.nextInt();
+	     mark=sc.nextDouble();
+
+	  }
+	  void show()   //display 
+	  {
+
+	  	 	System.out.println("my name="+name);
+	   		System.out.println("my rollno="+rollno);
+	   		System.out.println("my mark="+mark);
+	  }
+}
+class Test
+{
+ 
+	public static void main(String arg[])
+	{
+	   Student t=new Student();
+	     t.init();
+	     t.show();
+	     //another object
+	    Student t1=new Student();
+	    t1.init();
+	    t1.show();
+	  
+	}
+}
+
+o/p:
+enter name roll and mark
+a
+1
+87
+my name=a
+my rollno=1
+my mark=87.0
+enter name roll and mark
+b
+2
+56
+my name=b
+my rollno=2
+my mark=56.0
+
+(2)another way take argument in method
+import java.util.*;
+class Student
+{
+		private String name;  //instance variable   non static datamemeber
+	 private  int rollno;
+	  private  double mark;
+	  void init(String n,int r,double m)  //init we can write any name   
+	  {
+	   name=n;
+	   rollno=r;
+	   mark=m;
+
+	  }
+	  void show()   //display 
+	  {
+
+	  	 	System.out.println("my name="+name);
+	   		System.out.println("my rollno="+rollno);
+	   		System.out.println("my mark="+mark);
+	  }
+}
+class Test
+{
+ 
+	public static void main(String arg[])
+	{
+	   Student t=new Student();
+	     t.init("muna",1,90.50);
+	     t.show();
+	     //another object
+	    Student t1=new Student();
+	    t1.init("kuna",2,80.50);
+	    t1.show();
+	  
+	}
+}
+
+o/p:
+my name=muna
+my rollno=1
+my mark=90.5
+my name=kuna
+my rollno=2
+my mark=80.5
+
+
+
+import java.util.*;
+class Student
+{
+		private String name;  //instance variable   non static datamemeber
+	 private  int rollno;
+	  private  double mark;
+	  void init(String n,int r,double m)  //init we can write any name   
+	  {
+	   name=n;
+	   rollno=r;
+	   mark=m;
+
+	  }
+	  void show()   //display 
+	  {
+
+	  	 	System.out.println("my name="+name);
+	   		System.out.println("my rollno="+rollno);
+	   		System.out.println("my mark="+mark);
+	  }
+}
+class Test
+{
+ 
+	public static void main(String arg[])
+	{
+	   Student t=new Student();
+	    Scanner sc=new Scanner(System.in);
+	    System.out.println("enter name rollno and mark ");
+	    String nm=sc.next();
+	    int r=sc.nextInt();
+	    double m=sc.nextDouble();
+	     t.init(nm,r,m);
+	     t.show();
+	   
+	  
+	}
+}
+
+
+
+o/p:
+enter name rollno and mark 
+gita
+1
+90.50
+my name=gita
+my rollno=1
+my mark=90.5

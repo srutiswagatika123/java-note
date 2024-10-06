@@ -1,0 +1,575 @@
+class Test
+{
+	public static void main(String arg[])
+	{
+	   Test t1=new Test();
+	   Test t2=new Test()
+	   {
+
+	   };
+	   System.out.println(t1.getClass().getName());
+	   System.out.println(t2.getClass().getName());
+	}
+}
+
+o/p:
+C:\Users\HP\Desktop\niss java>javap Test$1
+Compiled from "1.java"
+class Test$1 extends Test {
+  Test$1();
+}
+
+C:\Users\HP\Desktop\niss java>javac 1.java
+
+C:\Users\HP\Desktop\niss java>java Test
+Test
+Test$1
+
+
+
+
+
+
+
+
+interface Shape {
+    B create(int s);
+}
+
+class B {
+    private int side;
+
+    public B(int s) {
+        this.side = s;
+    }
+
+    public int area() {
+        return side * side;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Shape shape = B::new;
+        B b = shape.create(5);
+        System.out.println(b.area());
+    }
+}
+
+
+
+
+
+
+class A
+{
+   void show()
+   {
+   	System.out.println("show method A");
+   }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   A t1=new A();
+	   A t2=new A()
+	   {
+
+	   };
+	   t1.show();
+	   t2.show();
+	}
+}
+
+
+
+
+
+class A
+{
+   void show()
+   {
+   	System.out.println("show method A");
+   }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   A t1=new A();
+	   A t2=new A()
+	   {
+	   		void show()
+   		{
+   				System.out.println("show method Test$1");
+   		}
+	   };
+	   t1.show();
+	   t2.show();
+	}
+}
+
+
+
+
+
+abstract class A
+{
+  abstract void show();
+  
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   //A t1=new A(); eror
+	   A t2=new A()
+	   {
+	   	void show()
+	   	{
+	   		System.out.println("show mwthos Test$1");
+	   	}
+	   };
+	   
+	   t2.show();
+	}
+}
+
+
+
+
+interface A
+{
+  void show();
+  
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	   //A t1=new A(); eror
+	   A t2=new A()
+	   {
+	   public	void show()
+	   	{
+	   		System.out.println("show mwthos Test$1");
+	   	}
+	   };
+	   
+	   t2.show();
+	}
+}
+/*
+C:\Users\HP\Desktop\niss java>javac 6.java
+
+C:\Users\HP\Desktop\niss java>java Test
+show mwthos Test$1
+
+C:\Users\HP\Desktop\niss java>javap Test$1
+Compiled from "6.java"
+class Test$1 implements A {
+  Test$1();
+  public void show();
+}
+*/
+
+
+
+
+interface A
+{
+  void show();
+
+}
+class B
+{
+	void disp(A x)
+	{
+     x.show();
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   B ob=new B();
+	   A  obj=new A()
+	   {
+	   		public void show()
+	   		{
+	   			System.out.println("Test$1 show method ");
+	   		}
+
+	   };
+	   ob.disp(obj);
+	}
+}
+
+
+
+
+interface A
+{
+  void show();
+
+}
+class B
+{
+	void disp(A x)
+	{
+     x.show();
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   B ob=new B();
+	   A  obj=new A()
+	   {
+	   		public void show()
+	   		{
+	   			System.out.println("Test$1 show method ");
+	   		}
+
+	   };
+	   ob.disp(obj);
+	}
+}
+
+
+
+
+interface A
+{
+  void show();
+  
+}
+class B
+{
+	void disp(A x)
+	{
+     x.show();
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   B ob=new B();
+	  
+	   ob.disp(
+
+
+		new A()
+	   {
+	   		public void show()
+	   		{
+	   			System.out.println("Test$1 show method ");
+	   		}
+	   		
+
+	   }
+	 );
+
+	}
+}
+
+
+
+
+//functional interface
+interface A
+{
+  void show();
+  
+}
+ 
+class Test
+{
+	public static void main(String arg[])
+	{
+	  A ob=()->System.out.println("show method ");
+	  ob.show();
+	}
+}
+
+
+/*
+classname objrefemncename=(args)->expression;
+
+*/
+
+
+
+//functional interface
+interface A
+{
+  void show();
+  
+}
+ 
+class Test
+{
+	public static void main(String arg[])
+	{
+	  A ob=()->{System.out.println("y ");
+	  System.out.println("x ");
+	};
+	  ob.show();
+	}
+}
+
+
+/*
+classname objrefemncename=(args)->expression;
+
+*/
+
+
+
+//functional interface
+interface A
+{
+  int add(int x,int y);
+  
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	  A ob=(int x,int y)->x+y;
+	  System.out.println(ob.add(10,20));
+	}
+}
+
+
+/*
+classname objrefemncename=(args)->expression;
+
+*/
+
+
+
+//functional interface static method reference 
+interface A
+{
+  void show();
+  
+}
+class B
+{
+	static void disp()
+	{
+		System.out.println("show implements logic");
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	  A ob=B::disp;
+  ob.show();
+	}
+}
+
+
+
+
+
+//functional interface nonstatic method reference 
+interface A
+{
+  void show();
+  
+}
+class B
+{
+	 void disp()
+	{
+		System.out.println("show implements logic");
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+		B obj=new B();
+	  A ob=obj::disp;
+  ob.show();
+	}
+}
+
+
+
+
+
+//functional interface using constructor reference 
+interface A
+{
+  void show();
+  
+}
+class B
+{
+	 B()
+	{
+		System.out.println("show implements logic");
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+		
+	  A ob=B::new;
+  ob.show();
+	}
+}
+
+
+
+
+
+(1)
+interface Shape
+{
+	int area(int s);
+}
+class Square implements Shape 
+{
+	public int area(int s )
+	{
+	    return s*s;
+	}
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	  Shape ob=new Square();
+	  System.out.println(ob.area(5));
+	}
+}
+
+(2)ann 
+
+interface Shape
+{
+	int area(int s);
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	  Shape ob=new Square()
+	  {
+	     	 public int area(int s )
+			{
+	   	 	return s*s;
+			}
+	  });
+	  System.out.println(ob.area(5));
+	}
+}
+
+(3)lambda
+
+interface Shape
+{
+	int area(int s);
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	  Shape ob=(int s)->s*s;
+	  System.out.println(ob.area(5));
+	}
+}
+
+(4)static method reference 
+interface Shape
+{
+	int area(int s);
+}
+class B
+{
+	static public  int  cal(int s)
+	{
+	    return s*s;
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	  Shape ob=B::cal;
+	  System.out.println(ob.area(5));
+	}
+}
+
+
+
+
+(5)nonstatic method reference 
+interface Shape
+{
+	int area(int s);
+}
+class B
+{
+	 public  int  cal(int s)
+	{
+	    return s*s;
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	 B obj=new B();
+	  Shape ob=obj::cal;
+	  System.out.println(ob.area(5));
+	}
+}
+
+
+(6)constructor  reference 
+interface Shape {
+    B create(int s);
+}
+
+class B {
+    private int side;
+
+    public B(int s) {
+        this.side = s;
+    }
+
+    public int area() {
+        return side * side;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Shape shape = B::new;
+        B b = shape.create(5);
+        System.out.println(b.area());
+    }
+}
+
+
+
+
+interfcae A
+{
+	double si(double p,double r,double t);
+}
+// try 6 way

@@ -1,0 +1,1291 @@
+inside interface not allow constructor, non static, concreate method, static and non static block.before jdk 1.8
+
+
+
+
+
+
+
+
+
+
+
+
+Interface Rules
+* For an interface we cannot create any object directly but we can create reference 
+variable
+* Once an interface is implemented by any class then that class must provide the 
+implementation for all the abstract methods available in the particular interface. This  class is also called as implementation class or child class.
+
+* For example, if our class is not providing implementation for at least 1 method then our class must be declared as abstract
+* We cannot create an object for abstract class or interface but we can create an 
+object only for implementation class. 
+* Once an interface is created then any number of classes can implement that 
+interface
+-> In Java, a class can implement multiple interfaces. For example
+
+ multiple inhetitance support by  interfaces
+
+interface A
+{
+    int x=10;
+    void show();
+}
+interface B
+{
+    int x=20;
+    void disp();
+}
+ class C implements A,B
+{
+    public void show()
+    {
+        System.out.println("show method ");
+    }
+    public void disp()
+    {
+        System.out.println("disp method " );
+        //System.out.println(x); // reference to x is ambiguou
+        System.out.println(A.x);
+        System.out.println(B.x);
+    }
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+        C ob=new C();
+        ob.show();
+        ob.disp();
+        A obj=new C();
+        obj.show();
+        B obj1=new C();
+        obj1.disp();
+    }
+}
+show method
+disp method
+10
+20
+show method
+disp method
+10
+20
+
+
+
+interface A
+{
+    
+    void show();
+}
+interface B
+{
+   
+    void show();
+}
+ class C implements A,B
+{
+    public void show()
+    {
+        System.out.println("show method ");
+    }
+  
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+        C ob=new C();
+        ob.show();
+        A obj=new C();
+        obj.show();
+        B obj1=new C();
+        obj1.show();
+    }
+}
+
+
+
+> An interface can extend multiple interfaces also
+
+interface A
+{
+    
+    void show();
+}
+interface B extends A 
+{
+   
+    void disp();
+}
+ class C implements B
+{
+    public void show()
+    {
+        System.out.println("show method ");
+    }
+    public void disp()
+    {
+        System.out.println("disp method ");
+    }
+  
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+       A ob=new C();
+       ob.show();
+       B obj=new C();
+       obj.show();
+       obj.disp();
+    }
+}
+
+o/p:
+show method
+show method
+disp method
+
+C:\Users\HP\Desktop\oops java>javap java.util.List
+Compiled from "List.java"
+public interface java.util.List<E> extends java.util.Collection<E>
+
+
+
+
+interface A
+{
+    
+    void show();
+}
+interface B 
+{
+   
+    void disp();
+}
+class C 
+{
+    void look()
+    {
+        System.out.println("look method ");
+    }
+
+}
+class D  extends C  implements A,B
+
+{
+    public void show()
+    {
+        System.out.println("show method ");
+    }
+    public void disp()
+    {
+        System.out.println("disp method ");
+    }
+  
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+       D ob=new D();
+       ob.show();
+       ob.disp();
+       ob.look();
+    }
+}
+show method
+disp method
+look method
+
+C:\Users\HP\Desktop\oops java>javap java.util.Vector
+public class java.util.Vector<E> extends java.util.AbstractList<E> implements java.util.List<E>, java.util.RandomAccess, java.lang.Cloneable, java.io.Serializable
+
+
+
+Why do we use an Interface?
+* It is used to achieve total abstraction.
+* Since java does not support multiple inheritances in the case of class, by using an interface it can achieve multiple inheritances.
+* It is also used to achieve loose coupling.
+* Interfaces are used to implement abstraction. So the question arises why use 
+interfaces when we have abstract classes?
+
+
+interface Rbi
+{
+    
+    void interset();
+}
+
+class Sbi implements Rbi
+{
+    public void interset()
+    {
+        System.out.println("10% ");
+    }
+
+}
+class Pnb implements Rbi
+{
+    public void interset()
+    {
+        System.out.println("9.5% ");
+    }
+
+}
+
+class Test
+{
+    public static void main(String arg[])
+    {
+       Rbi r=new Sbi();
+       r.interset();
+       r=new Pnb();
+       r.interset();
+    }
+}
+
+
+
+o/p:
+10%
+9.5%
+
+
+
+
+RDBMSs include MySQL, PostgreSQL, MariaDB, Microsoft SQL Server, and Oracle Database
+
+interface Driver  //java 
+{
+    
+    void connect();
+}
+
+class Oracle implements Driver
+{
+    public void connect()
+    {
+        System.out.println("oracle connection ");
+    }
+
+}
+class Mysql implements Driver
+{
+    public void connect()
+    {
+        System.out.println("mysql connection");
+    }
+
+}
+
+class Test
+{
+    public static void main(String arg[])
+    {
+      Driver ob=new Oracle();
+      ob.connect();
+      ob=new Mysql();
+      ob.connect();
+    }
+}
+
+
+
+
+Default Methods in interfaces  jdk8
+____________
+Before Java 8, we could only declare abstract methods in an interface. However, Java 8 introduced the concept of default methods. Default methods are methods that can have a body. The most important use of default methods in interfaces is to provide additional functionality to a given type without breaking down the implementing classes.
+Before Java 8, if a new method was introduced in an interface then all the implementing classes used to break. We would need to provide the implementation of that method in all the implementing classes.
+However, sometimes methods have only single implementation and there is no need to 
+provide their implementation in each class. In that case, we can declare that method as a default in the interface and provide its implementation in the interface itself.
+
+
+
+
+interface Driver  //java 
+{
+    
+    void connect();
+    default void show()
+    {
+    System.out.println("show method ");
+    }
+}
+
+class Oracle implements Driver
+{
+    public void connect()
+    {
+        System.out.println("oracle connection ");
+    }
+
+}
+class Mysql implements Driver
+{
+    public void connect()
+    {
+        System.out.println("mysql connection");
+    }
+
+}
+
+class Test
+{
+    public static void main(String arg[])
+    {
+      Driver ob=new Oracle();
+      ob.connect();
+      ob=new Mysql();
+      ob.connect();
+      ob.show();
+    }
+}
+C:\Users\HP\Desktop\oops java>java Test
+oracle connection
+mysql connection
+show method
+
+C:\Users\HP\Desktop\oops java>javap Driver
+Compiled from "1.java"
+interface Driver {
+  public abstract void connect();
+  public void show();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+static method in interfcae jdk8
+___________
+What are static methods in interfaces?
+The static methods in interfaces are similar to default methods but the only difference is that you can’t override them. 
+Now, why do we need static methods in interfaces if we already have default methods?
+Suppose you want to provide some implementation in your interface and you don’t want 
+this implementation to be overridden in the implementing class, then you can declare the method as static.
+
+
+interface A  //java 
+{
+    
+    void show();
+    public static void disp()
+    {
+        System.out.println("disp method in interface ");
+    }
+}
+
+
+
+class Test implements A
+{
+    public void show()
+    {
+        System.out.println("show method ");
+    }
+    public static void main(String arg[])
+    {
+        A ob=new Test();
+        ob.show();
+        A.disp();
+    
+    }
+}
+show method
+disp method in interface
+
+
+
+interface A  
+{
+
+    public static void main(String arg[])
+    {
+        System.out.println("hi");
+    
+    }
+}
+
+
+
+o/p:
+hi
+
+
+java 9
+ ____
+ private normal method allow in java9
+private static method 
+interface A
+{
+	private void f1()    //java 9
+	{
+	System.out.println("logic secure ");
+	} 
+	default void f2()   // java 8
+	{
+	    f1();
+	}
+	void f3();
+}
+class B implements A
+{
+	 public void f3()
+	 {
+	 System.out.println("f3 method ");
+	 }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+        A ob=new B();
+        ob.f2();
+        ob.f3();
+	}
+}
+o/p:
+logic secure
+f3 method 
+
+Marked interface or tagged interface
+-> We can also declare an interface without any abstract methods which is called Marked interface or tagged interface
+-> the main advantage of Marked interfaces is giving an instruction to JVM to perform a special task.
+Eg: Cloneable, Serializable, EventListener, ...
+
+
+C:\Users\HP>javap java.lang.Cloneable
+Compiled from "Cloneable.java"
+public interface java.lang.Cloneable {
+
+
+}
+
+
+C:\Users\HP>javap java.io.Serializable
+Compiled from "Serializable.java"
+public interface java.io.Serializable {
+}
+
+
+adapter class
+______
+interface A
+{
+	void f1();
+	void f2();
+	void f100();
+}
+abstract class Badapter implements A
+{
+	public void f1(){ }
+	public void f2(){ }
+	public void f3(){ }
+}
+class C extends Badpater
+{
+	public void f2()
+	{
+          System.out.println("f2 method");
+	 }  
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	  A ob=new C();
+	  ob.f2();
+	}
+}
+
+o/p:
+f2 method
+
+public interface java.awt.event.WindowListener extends java.util.EventListener {
+  public abstract void windowOpened(java.awt.event.WindowEvent);
+  public abstract void windowClosing(java.awt.event.WindowEvent);
+  public abstract void windowClosed(java.awt.event.WindowEvent);
+  public abstract void windowIconified(java.awt.event.WindowEvent);
+  public abstract void windowDeiconified(java.awt.event.WindowEvent);
+  public abstract void windowActivated(java.awt.event.WindowEvent);
+  public abstract void windowDeactivated(java.awt.event.WindowEvent);
+}
+
+
+without adapterclass program
+___________
+import java.awt.*;
+import java.awt.event.*;
+class Test extends Frame  implements WindowListener
+{
+    Test()
+    {
+        setSize(300,100);
+        setTitle("myFrame");
+        setVisible(true);
+        addWindowListener(this);
+
+    }
+     public  void windowOpened(WindowEvent e)
+     {
+
+     }
+  public  void windowClosing(WindowEvent e)
+  {
+       System.exit(0);
+  }
+  public  void windowClosed(WindowEvent e)
+  {
+
+  }
+  public  void windowIconified(WindowEvent e)
+  {
+
+  }
+  public  void windowDeiconified(WindowEvent e)
+  {
+
+  }
+  public  void windowActivated(WindowEvent e)
+  {
+
+  }
+  public  void windowDeactivated(WindowEvent e)
+  {
+
+  }
+    public static void main(String arg[])
+    {
+        new Test();
+    }
+}
+
+
+
+
+
+public abstract class java.awt.event.WindowAdapter implements java.awt.event.WindowListener,java.awt.event.WindowStateListener,java.awt.event.WindowFocusListener {
+  public java.awt.event.WindowAdapter();
+  public void windowOpened(java.awt.event.WindowEvent);
+  public void windowClosing(java.awt.event.WindowEvent);
+  public void windowClosed(java.awt.event.WindowEvent);
+  public void windowIconified(java.awt.event.WindowEvent);
+  public void windowDeiconified(java.awt.event.WindowEvent);
+  public void windowActivated(java.awt.event.WindowEvent);
+  public void windowDeactivated(java.awt.event.WindowEvent);
+  public void windowStateChanged(java.awt.event.WindowEvent);
+  public void windowGainedFocus(java.awt.event.WindowEvent);
+  public void windowLostFocus(java.awt.event.WindowEvent);
+}
+
+
+using adapterclass         WindowAdapter        
+_______
+
+import java.awt.*;
+import java.awt.event.*;
+class Test  extends  WindowAdapter
+{
+    Frame f;
+    Test()
+    {
+        f=new Frame();
+
+        f.setSize(300,100);
+        f.setTitle("myFrame");
+        f.setVisible(true);
+        f.addWindowListener(this);
+
+    }
+     
+  public  void windowClosing(WindowEvent e)
+  {
+       System.exit(0);
+  }
+  
+    public static void main(String arg[])
+    {
+        new Test();
+    }
+}
+
+
+
+
+
+
+Functional interfaces:
+
+Functional interfaces are new additions in Java 8. As a rule, a functional interface can contain exactly one abstract method. These functional interfaces are also called Single Abstract Method interfaces (SAM Interfaces).
+
+or
+
+
+
+A functional interface is an interface that contains only one abstract method. They can have only one functionality to exhibit. From Java 8 onwards, lambda expressions can be used to represent the instance of a functional interface. A functional interface can have any number of default methods. Runnable, ActionListener, and Comparable are some of the examples of functional interfaces. 
+
+Functional Interface is additionally recognized as Single Abstract Method Interfaces. In short, they are also known as SAM interfaces. Functional interfaces in Java are the new feature that provides users with the approach of fundamental programming. 
+
+Functional interfaces are included in Java SE 8 with Lambda expressions and Method references in order to make code more readable, clean, and straightforward. Functional interfaces are interfaces that ensure that they include precisely only one abstract method. Functional interfaces are used and executed by representing the interface with an annotation called @FunctionalInterface. As described earlier, functional interfaces can contain only one abstract method. However, they can include any quantity of default and static methods
+interface A
+{
+	void show();
+}
+
+
+
+EX:
+public interface java.lang.Runnable {
+  public abstract void run();
+}
+
+
+Compiled from "ActionListener.java"
+public interface java.awt.event.ActionListener extends java.util.EventListener {
+  public abstract void actionPerformed(java.awt.event.ActionEvent);
+}
+
+
+
+
+nested class
+________
+
+(1)regular nest class (non static )
+(2)static nested class
+(3)local inner class
+(4)Annomus inner class (very very imp)
+
+(1)regular nest class (non static )
+class Outer  //default //public
+{
+	void show()
+	{
+	 System.out.println("show ");
+	}
+	class Inner   //private//default/protected/public
+	{
+		void disp()
+		{
+		 System.out.println("disp ");
+		}
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	  Outer o=new Outer();
+	  o.show();
+	  Outer.Inner i=o.new Inner();
+	  i.disp();
+	}
+}
+
+after compile
+
+Outer.class
+ Outer$Inner.class
+ Test.class
+
+
+ o/p:
+ show
+disp
+
+
+(2)static nested class
+class Outer  //default //public
+{
+	static void show()
+	{
+	 System.out.println("show ");
+	}
+	static class Inner   //private//default/protected/public
+	{
+		void disp()
+		{
+		 System.out.println("disp ");
+		}
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	  
+	  Outer.show();
+	  Outer.Inner i=new Outer.Inner();
+	  i.disp();
+	}
+}
+
+after compile
+
+Outer.class
+ Outer$Inner.class
+ Test.class
+
+
+ o/p:
+ show
+disp
+
+
+
+(3)local inner class
+
+a class inside method that class is 
+
+class Outer  
+{
+     void show()
+    {
+      
+        System.out.println("show ");
+         class B
+         {
+             void disp()
+             {
+                 System.out.println("disp method ");
+             }
+         }
+         B obj=new B();
+         obj.disp();
+         class C
+         {
+            
+         }
+    }
+    
+    
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+      
+     Outer o=new Outer();
+     o.show();
+    }
+}
+
+
+o/p:
+show
+disp method
+
+after compile 
+____
+Outer$1B
+Outer$1C
+Outer.class
+Test.class
+
+
+(4)Annomus inner class (very very imp)
+
+
+classname objrefence=new classname()
+{
+	
+};
+
+
+
+
+class A
+{
+	
+}
+
+A ob=new A();   //A class Object 
+
+A ob=new A()
+{
+	
+};  // annoums innclass Object 
+
+
+
+
+
+class Test
+{
+    public static void main(String arg[])
+    {
+      
+      Test t=new Test();
+      Test t1=new Test()
+      {
+
+      };
+      Test t2=new Test()
+      {
+
+      };
+    }
+}
+
+after Compile
+
+Test.class 
+Test$1.class 
+Test$2.class 
+
+C:\Users\HP\Desktop\oops java>javap Test$1
+Compiled from "1.java"
+class Test$1 extends Test {
+  Test$1();
+}
+
+C:\Users\HP\Desktop\oops java>javap Test$2
+Compiled from "1.java"
+class Test$2 extends Test {
+  Test$2();
+}
+
+
+
+class A 
+{
+
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+      
+      A t=new A();
+      A t1=new A()
+      {
+
+      };
+      A t2=new A()
+      {
+
+      };
+    }
+}
+
+
+after Compile
+A.class
+Test.class 
+Test$1.class 
+Test$2.class 
+
+Compiled from "1.java"
+class Test$1 extends A {
+  Test$1();
+}
+
+C:\Users\HP\Desktop\oops java>javap Test$2
+Compiled from "1.java"
+class Test$2 extends A {
+  Test$2();
+}
+
+
+
+abstract class A
+{
+    abstract void show();
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+       A ob=new A()
+       {
+             void show()
+             {
+                System.out.println("show override");
+             }
+
+       };
+       ob.show();
+    }
+}
+o/p:
+show override
+
+
+
+
+abstract class A
+{
+    abstract void show();
+    
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+      new A()
+       {
+             void show()
+             {
+                System.out.println("show override");
+             }
+             
+       }.show();
+    }
+}
+o/p:
+show override
+
+
+
+interface A
+{
+    abstract void show();
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+       A ob=new A()
+       {
+             void show()
+             {
+                System.out.println("show override");
+             }
+
+       };
+       ob.show();
+    }
+}
+
+o/p:
+show override
+
+
+
+
+
+interface A
+{
+    abstract void show();
+}
+class B
+{
+    void disp(A x)
+    {
+        x.show();
+    }
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+       A ob=new A()
+       {
+            public void show()
+             {
+                System.out.println("show override");
+             }
+
+       };
+       B obj=new B();
+       obj.disp(ob);
+    }
+}
+o/p:
+show override
+
+
+
+
+interface A
+{
+    abstract void show();
+}
+class B
+{
+    void disp(A x)
+    {
+        x.show();
+    }
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+       
+       B obj=new B();
+       obj.disp(
+
+        new A()
+       {
+            public void show()
+             {
+                System.out.println("show override");
+             }
+
+       });
+    }
+}
+o/p:
+show override
+
+lambda function
+_____
+
+with lambda using class
+__________
+interface Arith
+{
+    abstract int add(int x,int y);
+}
+class B implements Arith
+{
+    public int add(int x,int y)
+            {
+                return x+y;
+            }
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+       Arith a=new B();
+       int res=a.add(10,20);
+       System.out.println("sum="+res);
+    }
+}
+without lamda  using annoums class
+__________
+interface Arith
+{
+    abstract int add(int x,int y);
+}
+
+class Test
+{
+    public static void main(String arg[])
+    {
+       Arith a=new Arith()
+       {
+
+            public int add(int x,int y)
+            {
+                return x+y;
+            }
+       };
+       int res=a.add(10,20);
+       System.out.println("sum="+res);
+    }
+}
+
+
+using lambda
+_______
+
+interface Arith
+{
+    abstract int add(int x,int y);
+}
+
+class Test
+{
+    public static void main(String arg[])
+    {
+       Arith a=(x,y)->x+y;
+       int res=a.add(10,20);
+       System.out.println("sum="+res);
+    }
+}
+o/p:
+sum=30
+
+interface A
+{
+    abstract void show();
+}
+
+class Test
+{
+    public static void main(String arg[])
+    {
+       A ob=()->System.out.println("hi");
+       ob.show();
+    }
+}
+o/p:
+hi
+
+
+static method refernce
+________
+interface A
+{
+    abstract void show();
+}
+class B
+{
+    static void disp()
+    {
+        System.out.println("hi");
+    }
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+        A ob=B::disp;
+        ob.show();
+    }
+}
+o/p:
+hi
+
+
+
+
+interface Arith
+{
+    abstract int add(int x,int y);
+}
+class B
+{
+    static int f1(int x,int y)
+    {
+        return x+y;
+    }
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+       Arith a=B::f1;
+       int res=a.add(10,20);
+       System.out.println("sum="+res);
+    }
+}
+o/p:
+sum =30
+
+
+
+
+non static method refernce
+_________
+interface Arith
+{
+    abstract int add(int x,int y);
+}
+class B
+{
+     int f1(int x,int y)
+    {
+        return x+y;
+    }
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+        B ob=new B();
+       Arith a=ob::f1;
+       int res=a.add(10,20);
+       System.out.println("sum="+res);
+    }
+}
+
+
+o/p:
+sum=30
+
+
+interface A
+{
+    abstract void show();
+}
+class B
+{
+     void disp()
+    {
+        System.out.println("hi");
+    }
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+        B obj=new B();
+        A ob=obj::disp;
+        ob.show();
+    }
+}
+
+
+o/p:
+hi
+
+
+
+
+constructor method refernce
+___________
+interface A
+{
+    abstract void show();
+}
+class B
+{
+    B()
+    {
+        System.out.println("hi");
+    }
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+    
+        A ob=B::new;
+        ob.show();
+    }
+}
+
+
+
+
+
+
+
+
+interface Arith
+{
+    abstract void add(int x,int y);
+}
+class B
+{
+    B(int x,int y)
+    {
+           System.out.println(x+y);
+    }
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+       Arith ob=B::new;
+       ob.add(10,20);
+
+    }
+}

@@ -1,0 +1,912 @@
+overloading
+__________________
+constructor overloading and method overloading example in single class
+class Test
+{
+	
+	Test()
+	{
+         System.out.println("dc");
+	}
+	Test(int x)
+	{
+		System.out.println("pc");
+	}
+	void show(int a)
+	{
+		System.out.println("show "+a);
+	}
+	void show(int a,int b)
+	{	
+		System.out.println("show "+a+" "+b);
+
+	}
+	void disp()
+	{
+          System.out.println("disp method ");
+	}
+	public static void main(String arg[])
+	{
+          Test t=new Test();
+          Test t1=new Test(10);
+          t.show(5);
+          t.show(30,40);
+          t.disp();
+	}
+}
+
+overridding
+______________
+
+class A
+{
+	public void show()
+	{
+	   System.out.println("p show ");
+	}
+	void disp()
+	{
+         System.out.println("disp method ");
+	}
+}
+class B extends A
+{
+	public void show()
+	{
+	   System.out.println("c show ");
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	  A ob=new B();
+	  ob.show();
+	}
+}
+
+o/p:
+c show
+
+
+
+
+concreate class
+__________________
+
+class classname
+{
+	constructor;
+	.
+	.
+	.
+
+}
+
+concraete class we can create object
+new classname();  valid 
+
+ Abstract class and methods
+ ______________________________
+-> A class which is declared using abstract keyword known as abstract class. 
+-> An abstract class may or may not have abstract methods. 
+-> We cannot create object of abstract class but possible refernce create.
+-> It is used to achieve abstraction but it does not provide 100% abstraction because it can  have concrete methods.
+
+concrete method
+________________
+it hava body part.
+
+modifier  returntype   methodname(args)
+{
+	
+
+}
+• An abstract class must be declared with an abstract keyword.
+• It can have abstract and non-abstract methods.
+• It cannot be instantiated.(object creation )
+• It is used for abstraction.
+Syntax : 
+abstract class class_name 
+{ 
+
+
+}
+
+
+
+
+Abstract method
+Method that are declared without any body within an abstract class are called abstract  method. 
+The method body will be defined by its subclass. 
+
+Abstract method can never be final and static. 
+Any class that extends an abstract class must implement all the abstract methods.
+Syntax: 
+abstract return_type method_name (args); //No definition
+// Program on abstract class & abstract method
+
+
+
+class A
+{
+	
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	   A ob=new A();
+	   
+	}
+}
+
+o/p:
+no error no output
+
+abstract class A
+{
+	
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	   A ob=new A();
+
+	}
+}
+
+1.java:10: error: A is abstract; cannot be instantiated
+           A ob=new A();
+                ^
+1 erro
+
+
+
+abstract class A
+{
+	
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	   A ob;
+
+	}
+}
+
+o/p:
+no error
+no output
+
+
+abstract class A
+{
+	
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	   new A();
+
+	}
+}
+
+o/p:
+1.java:10: error: A is abstract; cannot be instantiated
+           new A();
+           ^
+1 error
+
+
+
+class A
+{
+	abstract void disp();
+
+}
+
+error
+
+inside class any abstract method avalaibale that class must be abstrct.
+
+
+
+
+abstract class A
+{
+	abstract void disp();
+
+}
+class B extends A 
+{
+	
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+
+	}
+}
+
+C:\Users\HP\Desktop\oops java>javac 1.java
+1.java:6: error: B is not abstract and does not override abstract method disp() in A
+class B extends A
+^
+1 error
+
+How to remove error
+(1)we write abstract keyword before  class
+but we can not create the object of subclass.
+
+
+abstract class A
+{
+	abstract void disp();
+
+}
+abstract class B extends A 
+{
+
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   
+
+	}
+}
+
+
+o/p:
+no error
+no output
+
+
+abstract class A
+{
+	abstract void disp();
+
+}
+abstract class B extends A 
+{
+
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   new B(); // error
+	   new A();// error
+	   A ob;
+	   B obj; 
+
+	}
+}
+
+
+o/p:
+error 
+because abstract class(child class also here) we can not create object.
+
+
+if we create object of child class we must be override abstrct method of parent  in child class.
+
+ if we don not overiide we can not craete thr object that class is also known as abstarct class.
+
+
+abstract class A
+{
+	abstract void disp();
+
+}
+ class B extends A 
+{
+       void disp()
+       {
+       	System.out.println("disp method ");
+       }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   A ob=new B(); //casting
+	   ob.disp();
+	}
+}
+
+
+o/p:
+disp method
+
+
+When to use Abstract Methods & Abstract Class?
+Abstract methods are usually declared where two or more subclasses are expected to do a similar thing in different ways through different implementations. These subclasses extend the same Abstract class and provide different implementations for the abstract methods.
+Abstract classes are used to define generic types of behaviours at the top of an objec oriented programming class hierarchy, and use its subclasses to provide implementation 
+details of the abstract class.
+
+
+abstract class Shape
+{
+	abstract void area();
+
+}
+ class Rectangle extends Shape
+{
+	  int L,B;
+	  Rectangle(int L,int B)
+	  {
+	  	this.L=L;
+	  	this.B=B;
+	  }
+       void area()
+       {
+       	System.out.println("arae of rectangle= "+L*B);
+       }
+}
+ class Square extends Shape
+{
+	  int S;
+	  Square(int L)
+	  {
+	  	this.S=L;
+	  }
+       void area()
+       {
+       	System.out.println("arae of square= "+S*S);
+       }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   Shape s=new Rectangle(10,20);
+	   s.area();
+	   s=new Square(6);
+	   s.area();
+	}
+}
+
+arae of rectangle= 200
+arae of square= 36
+
+
+very very important
+__________________
+inside abstract class we can write 
+static and non static datamemebr,block  and method constructor.
+at least one method abstrct that class must be abstract class.
+
+abstract class A
+{
+	abstract void disp();  //abstarct method 
+	int a;
+	static int b;
+	A()
+	{
+		System.out.println("AC");
+	}
+	static
+	{
+		System.out.println("static block A");
+	}
+
+	{
+		System.out.println("non static block A");
+	}
+    void look()
+    {
+    	System.out.println("look concreate method ");
+    }
+}
+ class B extends A 
+{
+
+	   B()
+	   {
+	   	 System.out.println("BC");
+	   }
+       void disp()
+       {
+       	System.out.println("disp method ");
+       }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	   A ob=new B(); //casting
+	   ob.disp();
+	   ob.look();
+	}
+}
+o/p:
+static block A
+non static block A
+AC
+BC
+disp method
+look concreate method
+
+
+
+
+
+Interface
+______________
+jdk 7
+_____
+-> An interface is a fully abstract class. It includes a group of abstract methods (methods without a body).
+-> We use the interface keyword to create an interface in Java.
+
+interface  interfacename
+{
+   public final static datamember;
+   public abstrct method;
+   ...	
+
+ }
+
+
+Note: 
+-> All the variables declared in interface are public static final by default whether we specify or not
+
+-> All the methods declared in interface are public abstract by default whether we specify or not
+public: all the variables and methods declared in interface are public so that they can be accessible from any where.
+static: variables declared in interface are by default static so that they can be accessible  directly by using the interface name.
+final: the variables declared in interface are by default final it means they are constant whose value cannot be changed.
+abstract: all the methods declared in interface are abstract because they don’t contain any method body.
+
+interface A
+{
+	int x=10; //public static final int x;
+   final int y=20;//public static final int y=20;
+   void show(); //public abstract void show();
+   abstract int f1();//public abstract int f1();
+
+   public abstract void f2(int a);
+
+
+}
+
+C:\Users\HP\Desktop\oops java>javac 1.java
+
+C:\Users\HP\Desktop\oops java>javap A
+Compiled from "1.java"
+interface A {
+  public static final int x;
+  public static final int y;
+  public abstract void show();
+  public abstract int f1();
+  public abstract void f2(int);
+}
+
+
+Implementing an Interface
+-> Like abstract classes, we cannot create objects of interfaces.
+-> To use an interface, other classes must implement it. We use the implements keyword to implement an interface.
+
+interfcae interfcaename
+{
+	
+}
+class clasname implements interfacename
+{
+	
+}
+
+
+
+
+
+interface A
+{
+	int x=10; //public static final int x;
+   final int y=20;//public static final int y=20;
+   void show(); //public abstract void show();
+   abstract int f1();//public abstract int f1();
+
+   public abstract void f2(int a);
+
+
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+		A ob=new A();
+	}
+}
+C:\Users\HP\Desktop\oops java>javac 1.java
+1.java:17: error: A is abstract; cannot be instantiated
+                A ob=new A();
+                     ^
+1 error
+
+
+interface A
+{
+	int x=10; //public static final int x;
+   final int y=20;//public static final int y=20;
+   void show(); //public abstract void show();
+   abstract int f1();//public abstract int f1();
+
+   public abstract void f2(int a);
+
+
+}
+
+class B implements A
+{
+	public void show()
+	{
+		System.out.println("show method ");
+	}
+	public void f2(int a)
+	{
+		System.out.println("f2 method ");
+	}
+	public int f1()
+	{
+		System.out.println("f1 method ");
+		return 0;
+	}
+
+}
+
+class Test
+{
+	public static void main(String arg[])
+	{
+		//A ob=new A(); error
+		A ob=new B();
+		ob.show();
+		ob.f2(10);
+		System.out.println(ob.f1());
+		System.out.println(ob.x+" "+ob.y);
+		System.out.println(A.x+" "+A.y);
+	}
+}
+o/p:
+show method
+f2 method
+f1 method
+0
+10 20
+10 20
+
+inside interface not allow constructor, non static, concreate method, static and non static block.
+
+
+
+Interface Rules
+• For an interface we cannot create any object directly but we can create reference variable
+• Once an interface is implemented by any class then that class must provide the implementation for all the abstract methods available in the particular interface. This class is also called as implementation class or child class.
+• For example, if our class is not providing implementation for at least 1 method then our class must be declared as abstract
+• We cannot create an object for abstract class or interface but we can create an object only for implementation class. 
+• Once an interface is created then any number of classes can implement that 
+interface
+
+
+
+
+
+-> In Java, a class can implement multiple interfaces. For example
+
+> An interface can extend multiple interfaces also
+
+
+
+Why do we use an Interface?
+• It is used to achieve total abstraction.
+• Since java does not support multiple inheritances in the case of class, by using an 
+interface it can achieve multiple inheritances.
+• It is also used to achieve loose coupling.
+• Interfaces are used to implement abstraction. So the question arises why use 
+interfaces when we have abstract classes?
+
+nside interface not allow constructor, non static, concreate method, static and non static block.before jdk 1.8
+
+
+
+
+
+
+
+
+
+
+
+
+Interface Rules
+• For an interface we cannot create any object directly but we can create reference 
+variable
+• Once an interface is implemented by any class then that class must provide the 
+implementation for all the abstract methods available in the particular interface. This  class is also called as implementation class or child class.
+
+• For example, if our class is not providing implementation for at least 1 method then our class must be declared as abstract
+• We cannot create an object for abstract class or interface but we can create an 
+object only for implementation class. 
+• Once an interface is created then any number of classes can implement that 
+interface
+-> In Java, a class can implement multiple interfaces. For example
+
+ multiple inhetitance support by  interfaces
+
+interface A
+{
+    int x=10;
+    void show();
+}
+interface B
+{
+    int x=20;
+    void disp();
+}
+ class C implements A,B
+{
+    public void show()
+    {
+        System.out.println("show method ");
+    }
+    public void disp()
+    {
+        System.out.println("disp method " );
+        //System.out.println(x); // reference to x is ambiguou
+        System.out.println(A.x);
+        System.out.println(B.x);
+    }
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+        C ob=new C();
+        ob.show();
+        ob.disp();
+        A obj=new C();
+        obj.show();
+        B obj1=new C();
+        obj1.disp();
+    }
+}
+show method
+disp method
+10
+20
+show method
+disp method
+10
+20
+
+
+
+interface A
+{
+    
+    void show();
+}
+interface B
+{
+   
+    void show();
+}
+ class C implements A,B
+{
+    public void show()
+    {
+        System.out.println("show method ");
+    }
+  
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+        C ob=new C();
+        ob.show();
+        A obj=new C();
+        obj.show();
+        B obj1=new C();
+        obj1.show();
+    }
+}
+
+
+
+> An interface can extend multiple interfaces also
+
+interface A
+{
+    
+    void show();
+}
+interface B extends A 
+{
+   
+    void disp();
+}
+ class C implements B
+{
+    public void show()
+    {
+        System.out.println("show method ");
+    }
+    public void disp()
+    {
+        System.out.println("disp method ");
+    }
+  
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+       A ob=new C();
+       ob.show();
+       B obj=new C();
+       obj.show();
+       obj.disp();
+    }
+}
+
+o/p:
+show method
+show method
+disp method
+
+C:\Users\HP\Desktop\oops java>javap java.util.List
+Compiled from "List.java"
+public interface java.util.List<E> extends java.util.Collection<E>
+
+
+
+
+interface A
+{
+    
+    void show();
+}
+interface B 
+{
+   
+    void disp();
+}
+class C 
+{
+    void look()
+    {
+        System.out.println("look method ");
+    }
+
+}
+class D  extends C  implements A,B
+
+{
+    public void show()
+    {
+        System.out.println("show method ");
+    }
+    public void disp()
+    {
+        System.out.println("disp method ");
+    }
+  
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+       D ob=new D();
+       ob.show();
+       ob.disp();
+       ob.look();
+    }
+}
+show method
+disp method
+look method
+
+C:\Users\HP\Desktop\oops java>javap java.util.Vector
+public class java.util.Vector<E> extends java.util.AbstractList<E> implements java.util.List<E>, java.util.RandomAccess, java.lang.Cloneable, java.io.Serializable
+
+
+
+Why do we use an Interface?
+• It is used to achieve total abstraction.
+• Since java does not support multiple inheritances in the case of class, by using an interface it can achieve multiple inheritances.
+• It is also used to achieve loose coupling.
+• Interfaces are used to implement abstraction. So the question arises why use 
+interfaces when we have abstract classes?
+
+
+interface Rbi
+{
+    
+    void interset();
+}
+
+class Sbi implements Rbi
+{
+    public void interset()
+    {
+        System.out.println("10% ");
+    }
+
+}
+class Pnb implements Rbi
+{
+    publi
+        System.out.println("9.5% ");
+    }c void interset()
+    {
+
+}
+
+class Test
+{
+    public static void main(String arg[])
+    {
+       Rbi r=new Sbi();
+       r.interset();
+       r=new Pnb();
+       r.interset();
+    }
+}
+
+
+
+o/p:
+10%
+9.5%
+
+
+
+
+RDBMSs include MySQL, PostgreSQL, MariaDB, Microsoft SQL Server, and Oracle Database
+
+interface Driver  //java 
+{
+    
+    void connect();
+}
+
+class Oracle implements Driver
+{
+    public void connect()
+    {
+        System.out.println("oracle connection ");
+    }
+
+}
+class Mysql implements Driver
+{
+    public void connect()
+    {
+        System.out.println("mysql connection");
+    }
+
+}
+
+class Test
+{
+    public static void main(String arg[])
+    {
+      Driver ob=new Oracle();
+      ob.connect();
+      ob=new Mysql();
+      ob.connect();
+    }
+}

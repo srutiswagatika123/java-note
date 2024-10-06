@@ -1,0 +1,72 @@
+class Person 
+{
+	private String name;
+	private int age;
+	Person() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	Person(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+	void disp()
+	{
+		System.out.println("my name="+name);
+		System.out.println("my age="+age);
+	}
+	String getName() {
+		return name;
+	}
+	void setName(String name) {
+		this.name = name;
+	}
+	int getAge() {
+		return age;
+	}
+	void setAge(int age) {
+		this.age = age;
+	}
+	
+	
+}
+class Student extends Person 
+{
+	private int rollno;
+	private double mark;
+	Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	Student(String name, int age, int rollno, double mark) {
+		super(name, age);
+		this.rollno = rollno;
+		this.mark = mark;
+	}
+	int getRollno() {
+		return rollno;
+	}
+	void setRollno(int rollno) {
+		this.rollno = rollno;
+	}
+	double getMark() {
+		return mark;
+	}
+	void setMark(double mark) {
+		this.mark = mark;
+	}
+	
+	
+	
+	
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	 
+        Student s=new Student("muna", 17, 1, 90.50);
+        System.out.println("my name="+s.getName())
+	}
+}

@@ -1,0 +1,483 @@
+constructor chaining
+_______________________
+class A
+{
+	
+	A() {
+		super();
+		// TODO Auto-generated constructor stub
+		System.out.println("zero argumenet constructor ");
+	}
+	A(int x)
+	{
+		this();
+		System.out.println("para constructor1 "+x);
+	}
+	A(int p, double q) {
+		this(p);
+		System.out.println("parameter constructor "+p+" "+q);
+	}
+	
+}
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+   A ob=new A(10,12.34);
+
+	}
+
+}
+
+
+
+o/p:
+zero argumenet constructor 
+para constructor1 10
+parameter constructor 10 12.34
+
+
+
+class A
+{
+	
+	A() {
+		super();
+		// TODO Auto-generated constructor stub
+		System.out.println("zero argumenet constructor A  ");
+	}
+	A(int x)
+	{
+		this();
+		System.out.println("para constructor1 A "+x);
+	}
+	
+}
+class B extends A 
+{
+	B() {
+		  
+		this(10,20);
+		// TODO Auto-generated constructor stub
+		System.out.println("zero argumenet constructor B  ");
+	}
+	B(int x,int y)
+	{
+		super(x);
+		System.out.println("para constructor1 B "+y);
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+ 
+        B ob=new B();
+	}
+
+}
+
+
+
+o/p:
+zero argumenet constructor A  
+para constructor1 A 10
+para constructor1 B 20
+zero argumenet constructor B  
+
+
+
+static and non static in inheritance  flow
+_____________________________________________
+class A
+{
+	int x;  //5th
+	static int y;   // 1st
+	A() {   //7th
+		super();
+		// TODO Auto-generated constructor stub
+		System.out.println("zero argumenet constructor A  ");
+	}
+	static   //2nd 
+	{
+		System.out.println("static block A ");
+	}
+	
+	
+	{       //6th
+		System.out.println("nonstatic block A ");
+	}
+}
+class B extends A 
+{
+	int p;   //8th
+	static int q; //3rd 
+	//10th
+	B() {
+		  
+		
+		// TODO Auto-generated constructor stub
+		System.out.println("zero argumenet constructor B  ");
+	}
+	static   //4th 
+	{
+		System.out.println("static block B ");
+	}
+	//9th
+	{
+		System.out.println("nonstatic block B ");
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+ 
+        B ob=new B();
+	}
+
+}
+
+
+
+o/p:
+static block A 
+static block B 
+nonstatic block A 
+zero argumenet constructor A  
+nonstatic block B 
+zero argumenet constructor B  
+
+class A
+{
+	int x;  //5th   //11th
+	static int y;   // 1st
+	A() {   //7th   //13th
+		super();
+		// TODO Auto-generated constructor stub
+		System.out.println("zero argumenet constructor A  ");
+	}
+	static   //2nd 
+	{
+		System.out.println("static block A ");
+	}
+	
+	
+	{       //6th  //12th 
+		System.out.println("nonstatic block A ");
+	}
+}
+class B extends A 
+{
+	int p;   //8th  //14th
+	static int q; //3rd 
+	//10th  16th
+	B() {
+		  
+		
+		// TODO Auto-generated constructor stub
+		System.out.println("zero argumenet constructor B  ");
+	}
+	static   //4th 
+	{
+		System.out.println("static block B ");
+	}
+	//9th  //15th
+	{
+		System.out.println("nonstatic block B ");
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+ 
+        B ob=new B();
+        
+        B obj=new B();
+	}
+
+}
+
+o/p:
+static block A 
+static block B 
+nonstatic block A 
+zero argumenet constructor A  
+nonstatic block B 
+zero argumenet constructor B  
+nonstatic block A 
+zero argumenet constructor A  
+nonstatic block B 
+zero argumenet constructor B  
+
+
+method overloading
+_____________________
+Method overloading is a feature in Java that allows you to define multiple methods with the same name but different parameter lists within the same class. These methods are distinguished by the number of parameters, their types, or the order of the parameters.
+
+Key Points of Method Overloading:
+Same Method Name: All overloaded methods have the same name.
+Different Parameters: The methods must differ in the type, number, or order of parameters.
+Return Type: The return type of the methods can be different, but it does not contribute to differentiating the overloaded methods.
+
+
+How Method Overloading Works:
+Compile-Time Polymorphism: Method overloading is a form of compile-time polymorphism because the method that will be executed is determined at compile time, based on the method signature (name + parameters).
+Parameter Types and Number: When you call a method, the compiler matches the method name and the number and types of parameters in the call with the available methods.
+Advantages of Method Overloading:
+Improved Code Readability: Using the same method name for related actions makes the code easier to read and maintain.
+Cleaner Code: It prevents the need to create different method names for similar functionality (e.g., areaForRectangle, areaForSquare, etc.), leading to a cleaner and more understandable codebase.
+
+
+class Shape {
+    void area(int L, int B) {
+        System.out.println("Rectangle area = " + (L * B));
+    }
+
+    void area(int s) {
+        System.out.println("Square area = " + (s * s));
+    }
+
+    void area(double r) {
+        System.out.println("Circle area = " + Math.PI * r * r);
+    }
+
+    void perimeter(int L, int B) {
+        System.out.println("Rectangle perimeter = " + 2 * (L + B));
+    }
+
+    void perimeter(int s) {
+        System.out.println("Square perimeter = " + 4 * s);
+    }
+
+    void perimeter(double r) {
+        System.out.println("Circle perimeter = " + 2 * Math.PI * r);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Shape s = new Shape();
+        
+        // Calculate areas
+        s.area(4, 6); // Rectangle area
+        s.area(5);    // Square area
+        s.area(5.4);  // Circle area
+
+        // Calculate perimeters
+        s.perimeter(4, 6); // Rectangle perimeter
+        s.perimeter(5);    // Square perimeter
+        s.perimeter(5.4);  // Circle perimeter
+    }
+}
+
+
+
+casting
+_____________
+class A
+{
+	void show()
+	{
+		System.out.println("show A ");
+	}
+}
+class B extends A
+{
+	void look()
+	{
+		System.out.println("look b ");
+	}
+	void show()
+	{
+		System.out.println("show b ");
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+      A ob=new A(); //it acees only A data and method
+      B obj=new B();//it acess both A and B data and method
+      
+     A obj1=new B();  //upcasting  it access 
+      obj1.show();
+    //   obj1.look(); error
+    // B obj2=new A(); error
+      B obj3=(B)obj1;  //downcasting
+      obj3.show();
+      obj3.look();
+       
+	}
+
+}
+
+
+
+o/p:
+show b 
+show b 
+look b 
+
+
+method overriding
+_______________________
+class Parent
+{
+	void property()
+	{
+		System.out.println("land+money+car ");
+	}
+	void marry() //overridden
+	{
+		System.out.println("rita");
+	}
+}
+class Child extends Parent
+{
+	void marry()  //overridding
+	{
+		System.out.println("gita");
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+       Parent p=new Child();
+       p.marry();
+	}
+
+}
+
+
+o/p:
+gita"
+
+
+toString() example   Object class
+_______________________
+class Student
+{
+	String name;
+	int rollno;
+	double mark;
+	Student(String name, int rollno, double mark) {
+		super();
+		this.name = name;
+		this.rollno = rollno;
+		this.mark = mark;
+	}
+	
+}
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+      Student s=new Student("muna",1,90.50);
+      System.out.println(s); //internally s.toString()
+      System.out.println(s.toString());
+      int a=10;
+      System.out.println(a);
+	}
+}
+
+
+o/p:
+Student@6504e3b2
+Student@6504e3b2
+10
+
+
+
+
+
+class Student
+{
+	private String name;
+	private int rollno;
+	private double mark;
+	Student(String name, int rollno, double mark) {
+		super();
+		this.name = name;
+		this.rollno = rollno;
+		this.mark = mark;
+	}
+	public String toString()
+	{
+		return "my name="+name+"\nmy rollno="+rollno+"\nmy mark="+mark;
+	}
+}
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+      Student s=new Student("muna",1,90.50);
+      System.out.println(s); //internally s.toString()
+ 
+	}
+}
+
+
+o/p:
+my name=muna
+my rollno=1
+my mark=90.5
+
+
+equals() method overidde
+________________________
+
+
+class Student
+{
+	private String name;
+	private int rollno;
+	private double mark;
+	Student(String name, int rollno, double mark) {
+		super();
+		this.name = name;
+		this.rollno = rollno;
+		this.mark = mark;
+	}
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", rollno=" + rollno + ", mark=" + mark + "]";
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(mark, name, rollno);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return Double.doubleToLongBits(mark) == Double.doubleToLongBits(other.mark) && Objects.equals(name, other.name)
+				&& rollno == other.rollno;
+	}
+	
+}
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+      Student s=new Student("muna",1,90.50);
+      Student s1=new Student("muna",1,90.50);
+      System.out.println(s==s1);
+      System.out.println(s.equals(s1));
+
+	}
+}
+
+o/p:
+false
+true

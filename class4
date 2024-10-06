@@ -1,0 +1,480 @@
+java 9
+ __________
+ private normal method allow in java9
+private static method 
+interface A
+{
+	private void f1()    //java 9
+	{
+	System.out.println("logic secure ");
+	} 
+	default void f2()   // java 8
+	{
+	    f1();
+	}
+	void f3();
+}
+class B implements A
+{
+	 public void f3()
+	 {
+	 System.out.println("f3 method ");
+	 }
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+        A ob=new B();
+        ob.f2();
+        ob.f3();
+	}
+}
+o/p:
+logic secure
+f3 method 
+
+Marked interface or tagged interface
+-> We can also declare an interface without any abstract methods which is called Marked interface or tagged interface
+-> the main advantage of Marked interfaces is giving an instruction to JVM to perform a special task.
+Eg: Cloneable, Serializable, EventListener, ...
+
+
+C:\Users\HP>javap java.lang.Cloneable
+Compiled from "Cloneable.java"
+public interface java.lang.Cloneable {
+}
+
+
+C:\Users\HP>javap java.io.Serializable
+Compiled from "Serializable.java"
+public interface java.io.Serializable {
+}
+
+
+adapter class
+______________
+interface A
+{
+	void f1();
+	void f2();
+	void f100();
+}
+abstract class Badapter implements A
+{
+	public void f1(){ }
+	public void f2(){ }
+	public void f3(){ }
+}
+class C extends Badpater
+{
+	public void f2()
+	{
+          System.out.println("f2 method");
+	 }  
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	  A ob=new C();
+	  ob.f2();
+	}
+}
+
+o/p:
+f2 method
+
+public interface java.awt.event.WindowListener extends java.util.EventListener {
+  public abstract void windowOpened(java.awt.event.WindowEvent);
+  public abstract void windowClosing(java.awt.event.WindowEvent);
+  public abstract void windowClosed(java.awt.event.WindowEvent);
+  public abstract void windowIconified(java.awt.event.WindowEvent);
+  public abstract void windowDeiconified(java.awt.event.WindowEvent);
+  public abstract void windowActivated(java.awt.event.WindowEvent);
+  public abstract void windowDeactivated(java.awt.event.WindowEvent);
+}
+
+
+without adapterclass program
+_______________________________
+import java.awt.*;
+import java.awt.event.*;
+class Test extends Frame  implements WindowListener
+{
+    Test()
+    {
+        setSize(300,100);
+        setTitle("myFrame");
+        setVisible(true);
+        addWindowListener(this);
+
+    }
+     public  void windowOpened(WindowEvent e)
+     {
+
+     }
+  public  void windowClosing(WindowEvent e)
+  {
+       System.exit(0);
+  }
+  public  void windowClosed(WindowEvent e)
+  {
+
+  }
+  public  void windowIconified(WindowEvent e)
+  {
+
+  }
+  public  void windowDeiconified(WindowEvent e)
+  {
+
+  }
+  public  void windowActivated(WindowEvent e)
+  {
+
+  }
+  public  void windowDeactivated(WindowEvent e)
+  {
+
+  }
+    public static void main(String arg[])
+    {
+        new Test();
+    }
+}
+
+
+
+
+
+public abstract class java.awt.event.WindowAdapter implements java.awt.event.WindowListener,java.awt.event.WindowStateListener,java.awt.event.WindowFocusListener {
+  public java.awt.event.WindowAdapter();
+  public void windowOpened(java.awt.event.WindowEvent);
+  public void windowClosing(java.awt.event.WindowEvent);
+  public void windowClosed(java.awt.event.WindowEvent);
+  public void windowIconified(java.awt.event.WindowEvent);
+  public void windowDeiconified(java.awt.event.WindowEvent);
+  public void windowActivated(java.awt.event.WindowEvent);
+  public void windowDeactivated(java.awt.event.WindowEvent);
+  public void windowStateChanged(java.awt.event.WindowEvent);
+  public void windowGainedFocus(java.awt.event.WindowEvent);
+  public void windowLostFocus(java.awt.event.WindowEvent);
+}
+
+
+using adapterclass         WindowAdapter        
+_________________
+
+import java.awt.*;
+import java.awt.event.*;
+class Test  extends  WindowAdapter
+{
+    Frame f;
+    Test()
+    {
+        f=new Frame();
+
+        f.setSize(300,100);
+        f.setTitle("myFrame");
+        f.setVisible(true);
+        f.addWindowListener(this);
+
+    }
+     
+  public  void windowClosing(WindowEvent e)
+  {
+       System.exit(0);
+  }
+  
+    public static void main(String arg[])
+    {
+        new Test();
+    }
+}
+
+
+
+
+
+
+Functional interfaces:
+
+Functional interfaces are new additions in Java 8. As a rule, a functional interface can contain exactly one abstract method. These functional interfaces are also called Single Abstract Method interfaces (SAM Interfaces).
+
+or
+
+
+
+
+
+
+
+
+
+
+
+
+A functional interface is an interface that contains only one abstract method. They can have only one functionality to exhibit. From Java 8 onwards, lambda expressions can be used to represent the instance of a functional interface. A functional interface can have any number of default methods. Runnable, ActionListener, and Comparable are some of the examples of functional interfaces. 
+
+Functional Interface is additionally recognized as Single Abstract Method Interfaces. In short, they are also known as SAM interfaces. Functional interfaces in Java are the new feature that provides users with the approach of fundamental programming. 
+
+Functional interfaces are included in Java SE 8 with Lambda expressions and Method references in order to make code more readable, clean, and straightforward. Functional interfaces are interfaces that ensure that they include precisely only one abstract method. Functional interfaces are used and executed by representing the interface with an annotation called @FunctionalInterface. As described earlier, functional interfaces can contain only one abstract method. However, they can include any quantity of default and static methods
+interface A
+{
+	void show();
+}
+
+
+
+EX:
+public interface java.lang.Runnable {
+  public abstract void run();
+}
+
+
+Compiled from "ActionListener.java"
+public interface java.awt.event.ActionListener extends java.util.EventListener {
+  public abstract void actionPerformed(java.awt.event.ActionEvent);
+}
+
+
+
+
+nested class
+________________________
+
+(1)regular nest class (non static )
+(2)static nested class
+(3)local inner class
+(4)Annomus inner class (very very imp)
+
+(1)regular nest class (non static )
+class Outer  //default //public
+{
+	void show()
+	{
+	 System.out.println("show ");
+	}
+	class Inner   //private//default/protected/public
+	{
+		void disp()
+		{
+		 System.out.println("disp ");
+		}
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	  Outer o=new Outer();
+	  o.show();
+	  Outer.Inner i=o.new Inner();
+	  i.disp();
+	}
+}
+
+after compile
+
+Outer.class
+ Outer$Inner.class
+ Test.class
+
+
+ o/p:
+ show
+disp
+
+
+(2)static nested class
+class Outer  //default //public
+{
+	static void show()
+	{
+	 System.out.println("show ");
+	}
+	static class Inner   //private//default/protected/public
+	{
+		void disp()
+		{
+		 System.out.println("disp ");
+		}
+	}
+}
+class Test
+{
+	public static void main(String arg[])
+	{
+	  
+	  Outer.show();
+	  Outer.Inner i=new Outer.Inner();
+	  i.disp();
+	}
+}
+
+after compile
+
+Outer.class
+ Outer$Inner.class
+ Test.class
+
+
+ o/p:
+ show
+disp
+
+
+
+(3)local inner class
+
+a class inside method that class is 
+
+class Outer  
+{
+     void show()
+    {
+      
+        System.out.println("show ");
+         class B
+         {
+             void disp()
+             {
+                 System.out.println("disp method ");
+             }
+         }
+         B obj=new B();
+         obj.disp();
+         class C
+         {
+            
+         }
+    }
+    
+    
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+      
+     Outer o=new Outer();
+     o.show();
+    }
+}
+
+
+o/p:
+show
+disp method
+
+after compile 
+____________
+Outer$1B
+Outer$1C
+Outer.class
+Test.class
+
+
+(4)Annomus inner class (very very imp)
+
+
+classname objrefence=new classname()
+{
+	
+};
+
+
+
+
+class A
+{
+	
+}
+
+A ob=new A();   //A class Object 
+
+A ob=new A()
+{
+	
+};  // annoums innclass Object 
+
+
+
+
+
+class Test
+{
+    public static void main(String arg[])
+    {
+      
+      Test t=new Test();
+      Test t1=new Test()
+      {
+
+      };
+      Test t2=new Test()
+      {
+
+      };
+    }
+}
+
+after Compile
+
+Test.class 
+Test$1.class 
+Test$2.class 
+
+C:\Users\HP\Desktop\oops java>javap Test$1
+Compiled from "1.java"
+class Test$1 extends Test {
+  Test$1();
+}
+
+C:\Users\HP\Desktop\oops java>javap Test$2
+Compiled from "1.java"
+class Test$2 extends Test {
+  Test$2();
+}
+
+
+
+class A 
+{
+
+}
+class Test
+{
+    public static void main(String arg[])
+    {
+      
+      A t=new A();
+      A t1=new A()
+      {
+
+      };
+      A t2=new A()
+      {
+
+      };
+    }
+}
+
+
+after Compile
+A.class
+Test.class 
+Test$1.class 
+Test$2.class 
+
+Compiled from "1.java"
+class Test$1 extends A {
+  Test$1();
+}
+
+C:\Users\HP\Desktop\oops java>javap Test$2
+Compiled from "1.java"
+class Test$2 extends A {
+  Test$2();
+}

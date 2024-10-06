@@ -1,0 +1,305 @@
+The main objectives of wrapper classes are:
+1) To Wrap primitives into object form. So that we can handle primitives also just like
+objects.
+2) To represent primitive data types as a Object form we required some classes these classes
+are called wrapper classes
+3) All wrapper classes present in the java.lang package.
+4) Int ,byte.... Acts as a primitives we can make the primitives into the objects is called
+wrapper classes the the wrapper classes are Integer,Byte-----.
+5) We are having 8 primitive data types hence sun peoples are providing 8 wrapper classes.
+6) Data types and corresponding wrapper classes:-
+Primitives Wrapper classes Fallowing constructor arguments
+byte Byte Byte or String
+short Short Short or String
+int Integer Int or String
+long Long Long or String
+float Float Float or double or String
+double Double double or String
+char Character Char
+boolean Boolean Boolean or String
+(7)Wrapper classes hierarchy:-
+Object
+
+Number Character Boolean
+
+Byte Short Integer Long Float Double
+7) Byte,Short,Integer,Long,Float,Double these are child classes of Number class.
+The main objectives of wrapper classes are:
+->To Wrap primitives into object form. So that we can handle primitives also just like
+objects.
+->To Define several utility functions for the primitives(like converting primitive to the string
+form etc.)
+ Constructors
+ valueOf()
+ xxxValue()
+ parseXxx()
+ toString()
+1)Constructors of wrapper classes:-
+All most all wrapper classes contain two constructors:-
+Byte Class: The Byte class wraps a value of primitive type 'byte' in an object. An object of type
+Byte contains a single field whose type is byte.
+Constructors:
+ Byte (byte num)
+e.g.: Byte b1 = new Byte (98);
+ Byte (String str)
+e.g.: String str = "98";
+Byte b2=new Byte(str);
+
+
+Maximum wrapper class taking String as a argument at that situation frequently we are getting
+NumberFormatException.
+Ex:
+Integer I = new Integer(10);
+Integer I = new Integer(“10”);
+If the String is unable to convert into the number form then
+we will get runtime exception saying “NumberformatException”.
+Ex: Integer I = new Integer(“ten”); not valid.
+Float class contains 23 constructors which can take double String as argument.
+Float f = new Float(10.5f);
+Float f = new Float(“10.5f”);
+Float f = new Float(10.5);
+Float f = new Float(10.5);
+Character class contain only one constructor which can take char as the argument
+i.e character class doesn‟t contain a constructor which can take string as the argument.
+Ex:
+Character ch1 = new Character('a'); valid.
+Character ch1 = new Character("a"); not valid.
+Boolean class contains 2 constructors one can take boolean primitive. Other can take string
+argument. If u r providing boolean primitive as the argument the. The allowed values are true or
+false.Case is not important if the content contains „TRUE‟ then it is considered as true other wise
+it considered as false.
+Q) Which of the following are valid ?
+Boolean b = new Boolean(true); O/P:-true
+Boolean b = new Boolean(FALSE); //error
+Boolean b = new Boolean(“false”); O/P:-false
+Boolean b = new Boolean(“TrUE”);O/P:-true
+Boolean b = new Boolean(“raju”); O/P:-false
+Boolean b = new Boolean(“yes”); O/P:-false
+Ex-1
+class Test
+{
+public static void main(String[] args)
+{
+float f=10.7f;
+Float f1=new Float(f);
+System.out.println(f1);
+Float f2=new Float("10");
+System.out.println(f2);
+//Float f3=new Float("ten");//NumberFormatException
+//System.out.println(f3);
+Integer i1=new Integer(2);
+System.out.println(i1);
+//Integer i2=new Integer("two");//NumberFormatException
+
+
+//System.out.println(i2);}}
+
+Output:
+10.7
+10.0
+2
+Ex-2
+class Test1
+{
+public static void main(String[] args)
+{
+int a=10;//primitive variable
+System.out.println(a);
+//System.out.println(a.toString());//CE:-int cant be dereferenced
+Integer i=new Integer("100");//reference variable
+System.out.println(i);
+System.out.println(i.toString());
+}
+}
+Output:
+100
+100
+2)valueOf():-
+By using valueof() we are creating wrapper object and it is a alternative to the constructor.
+
+String/ valueOf() Wrapper
+primitive object
+version1:( String to wrapper object)
+->All the wrapper classes except character class contains the valueOf() method for converting
+string to corresponding Wrapper Object.
+public static wrapper valueOf(String s);
+Ex:
+Integer I = Integer.valueOf(„10‟);
+Float F = Float.valueOf(“10.5”);
+Boolean B = Boolean.valueOf(“raju”);
+Character ch = Character.valueOf(“10”); C.E
+Version2:( primitive to wrapper object.)
+Every Wrapper class including character class contains the following valueOf() method to
+convert primitive to wrapper object form.
+public static wrapper valueOf(primitive p);
+Ex:
+Integer I = Integer.valueOf(10);
+Character ch = Character.valueOf(„a‟);
+Boolean B = Boolean.valueOf(true);
+
+EX- 3
+class Test2
+{
+public static void main(String[] args)
+{
+//by using constructor converting String/primitive to wrapper object
+Integer i=new Integer(10);
+System.out.println(i);
+//by using valueOf() converting String/primitive to the wrapper object
+Boolean b=Boolean.valueOf("true");
+System.out.println(b);
+}
+}
+3)xxxValue():-
+Every wrapper class Except character and Boolean classes contains the following
+xxxValue() methds for converting wrapperObject to primitive.
+.
+Primitive XXXValue() Wrapper
+object value
+public int intValue();
+public byte byteValue();
+public short shortValue();
+public long longValue();
+public float floatValue();
+public double doubleValue();
+class Test3
+{
+public static void main(String[] args)
+{
+Integer i=Integer.valueOf(150);
+System.out.println("byte value :"+i.byteValue());//-106
+System.out.println("short value :"+i.shortValue());//150
+System.out.println("int value :"+i.intValue());//150
+System.out.println("long value :"+i.longValue());//150
+System.out.println("float value :"+i.floatValue());//150.0
+System.out.println("double value :"+i.doubleValue());//150.0
+Character c=new Character('s');
+char ch=c.charValue();
+System.out.println(ch);
+Boolean b=new Boolean(false);
+boolean bb=b.booleanValue();
+System.out.println(bb);
+}
+}
+
+
+4)parseXXX():-by using above method we are converting String into the corresponding
+primitive.
+.
+Primitive parseXXX() String
+type
+
+Every wrapper class except character class contains the following parseXxx() method for
+converting String to primitive type
+public static primitive parseXxx(String s);
+int i= Integer.parseInt(“10”);
+boolean b = Boolean.parseBoolean(“true”);
+class Test4
+{
+public static void main(String[] args)
+{
+String str1="10";
+String str2="20";
+System.out.println(str1+str2);//1020
+int a=Integer.parseInt(str1);
+float f=Float.parseFloat(str2);
+System.out.println(a+f);//30.0
+}
+}
+(5)toString()
+by using above method we are converting wrapper class object to String.
+Wrapper
+object toString() String
+
+version1:
+All wrapper Classes contains an instance method toString() for converting wrapper object to String
+type. This is overriding method of object class toString() method.
+public String toString();
+
+EX:
+Integer I = new Integer(10);
+String s = I.toString();
+System.out.println(s); O/P:-10
+Ex:
+Boolean B = new Boolean(“raju”);
+String s = B.toString();
+System.out.println(s); O/P:-false
+Version2:Every wrapper class contains the following static toString() for converting primitive
+to String representation..
+
+
+
+public static String toString(primitive p);
+EX:
+String s = Integer.toString(10);
+System.out.println(s); O/P:-10
+String s = Boolean.toString(true);
+System.out.println(s); O/P:-true
+
+NOTE:
+class Object
+{
+Public string toString()
+{
+return getClass@hashcode;
+}
+};
+class WrapperClasses extends Object
+{
+//overriding the toString()
+Public string toString()
+{
+return the corresponding value
+}
+};
+Ex:
+class Test5
+{
+public static void main(String[] args)
+{
+Integer i=new Integer(10);
+System.out.println(i.toString());
+Float f=new Float(10.7);
+System.out.println(f.toString());
+}
+} //output 10 10.7
+Diagrammatic form of wrapper classes
+
+
+Boxing :The programmer is responsible person to do the explicit conversion primitive to the
+wrapper.
+Int a=10;
+Integer i=a;error;
+Integer i=integer .valueof(a); (explicit)
+Unboxing : The programmer is responsible person to do the explicit conversion wrapper to the
+primitive.
+Integer ob=new Integer(10);
+Int i=ob;error;
+Int i=ob.intValue();(explicit)
+Autoboxing and Autounboxing:-(introduced in the 1.5 version)
+Until 1.4 version we are not allowed to place primitive in the place wrapper and wrapper in the place
+of primitive.
+Autoboxing:-
+The auto conversion of the primitive into the Wrapper object is called the autoboxing these
+conversions done by compiler at the time of compilation.
+Integer i=10;
+//after compilation this line will become Integer i=Integer.valueof(10);
+System.out.println(i);
+Autoboxing concept internally implemented by using valueOf();
+Autounboxing:-
+The auto conversion of the wrapper object to the primitive value is called autounboxing and
+these conversions are done by compiler at the time of compilation.
+Integer ob=new Integer(10);
+Int a=ob;
+//after compilation this line will become int a=ob.intValue();
+System.out.println(a);
+Automatic conversion of the primitive to wrapper and wrapper to the primitive:-
+
+AutoBoxing
+
+Primitive Wrapper object
+
+Autounboxing
+
+AutoBoxing & AutoUnBoxing from 1.5 version onwards there is no difference b/w
+Primitive value and wrapper object.we can use interchange.

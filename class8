@@ -1,0 +1,983 @@
+class Test
+{
+	public static void main(String arg[])
+	{
+		System.out.println("main start");
+		System.out.println(10/2);
+		System.out.println("main end");
+	}
+}
+
+o/p:
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+main start
+5
+main end
+
+class Test
+{
+	public static void main(String arg[])
+	{
+		System.out.println("main start");
+		System.out.println(10/0);
+		System.out.println("main end");
+	}
+}
+
+o/p:
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+main start
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at Test.main(1.java:6)
+
+
+excption handling : it provide alternate to excuete rest of the program line.lang
+
+(1)try
+(2)catch
+(3)finally 
+(4)throw 
+(5)throws 
+
+
+try
+{
+   //risk code
+}
+catch(Exceptionname refencename)
+{
+	//code msg
+}
+
+
+class Test
+{
+	public static void main(String arg[])
+	{
+		System.out.println("main start");
+		try
+		{
+			System.out.println(10/2);
+			System.out.println("try end");
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("d never zero "+e);
+		}
+		
+		System.out.println("main end");
+	}
+}
+
+o/p:
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+main start
+5
+try end
+main end
+
+
+class Test
+{
+	public static void main(String arg[])
+	{
+		System.out.println("main start");
+		try
+		{
+			System.out.println(10/0);
+			System.out.println("try end");
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("d never zero "+e);
+		}
+		
+		System.out.println("main end");
+	}
+}
+
+main start
+d never zero java.lang.ArithmeticException: / by zero
+main end
+
+class Test
+{
+	public static void main(String arg[])
+	{
+		System.out.println("main start");
+		try
+		{
+			System.out.println(10/0);
+			System.out.println("try end");
+		}
+		catch(RuntimeException e)
+		{
+			System.out.println("d never zero "+e);
+		}
+		
+		System.out.println("main end");
+	}
+}
+
+
+main start
+d never zero java.lang.ArithmeticException: / by zero
+main end
+
+
+excption not match program stop abnormally 
+_____________________________________________
+class Test
+{
+	public static void main(String arg[])
+	{
+		System.out.println("main start");
+		try
+		{
+			System.out.println(10/0);
+			System.out.println("try end");
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println("d never zero "+e);
+		}
+		
+		System.out.println("main end");
+	}
+}
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+main start
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at Test.main(1.java:8)
+
+
+diffenttype of exception 
+____________________________
+(1)ArithmeticException   10/0 
+(2)ArrayIndexOutOfBoundsException  
+int arr[]={10,20};
+   arr[3];
+
+(3)NullPointerException 
+int arr[]=null;
+arr.length ; 
+(4)NegativeArraySizeException
+int arr[]=new int[-3];
+(5)NumberForamtException
+String s="twothree";
+int n=Integer.parseInt(s);
+
+(6)StringIndexOutOfBoundsException
+String s="hi";
+System.out.println(s.charAt(3));
+
+
+import java.util.*;
+class Test
+{
+    public static void main(String arg[])
+    {
+        int arr[]=null;
+        try
+        {
+            System.out.println(arr.length);
+        }
+        catch(NullPointerException e)
+        {
+           System.out.println(e);
+        } 
+         System.out.println("main end");
+    }
+}
+
+
+
+class Test {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3, 4, 5};
+
+        try {
+            System.out.println("Element at index 5: " + numbers[5]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Exception caught: " + e);
+        }
+
+        System.out.println("Program continues after handling the exception.");
+    }
+}
+
+
+
+class test {
+    public static void main(String[] args) {
+        String invalidNumber = "abc123";
+
+        try {
+            int number = Integer.parseInt(invalidNumber);
+        } catch (NumberFormatException e) {
+            System.out.println("Exception caught: " + e);
+        }
+
+        System.out.println("Program continues after handling the exception.");
+    }
+}
+
+
+
+
+class Test {
+    public static void main(String[] args) {
+       String s="hi";
+
+        try {
+            System.out.println(s.charAt(2));
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("Exception caught: " + e);
+        }
+
+        System.out.println("Program continues after handling the exception.");
+    }
+}
+
+try with multiple catch
+_____________________________
+try
+{
+
+}
+catch(Exception e)
+{
+
+}
+catch(Exception e)
+{
+
+}
+
+
+
+
+class Test {
+    public static void main(String[] args) {
+        int arr[]={10,20,30,40,50};
+        System.out.println("main start");
+        try
+        {
+            System.out.println(arr[3]/2);
+            System.out.println("try end");
+        }
+        catch(ArithmeticException e)
+        {
+            System.out.println("d never zero "+e);
+        }
+        catch(ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("index out of range "+e);
+        }
+        System.out.println("Program end.");
+    }
+}
+
+
+o/p:
+main start
+20
+try end
+Program end.
+
+
+class Test {
+    public static void main(String[] args) {
+        int arr[]={10,20,30,40,50};
+        System.out.println("main start");
+        try
+        {
+            System.out.println(arr[3]/0);
+            System.out.println("try end");
+        }
+        catch(ArithmeticException e)
+        {
+            System.out.println("d never zero "+e);
+        }
+        catch(ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("index out of range "+e);
+        }
+        System.out.println("Program end.");
+    }
+}
+
+
+o/p:
+main start
+d never zero arithmetic exception
+Program end.
+
+
+class Test {
+    public static void main(String[] args) {
+        int arr[]={10,20,30,40,50};
+        System.out.println("main start");
+        try
+        {
+            System.out.println(arr[5]/0);
+            System.out.println("try end");
+        }
+        catch(ArithmeticException e)
+        {
+            System.out.println("d never zero "+e);
+        }
+        catch(ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("index out of range "+e);
+        }
+        System.out.println("Program end.");
+    }
+}
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+main start
+index out of range java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+Program end.
+
+
+
+class Test {
+    public static void main(String[] args) {
+        int arr[]={10,20,30,40,50};
+        System.out.println("main start");
+        try
+        {
+            System.out.println(arr[5]/0);
+            System.out.println("try end");
+        }
+        catch(Exception e)
+        {
+           System.out.println("Exception handle all type "+e);
+        }
+        catch(ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("index out of range "+e);
+        }
+        System.out.println("Program end.");
+    }
+}
+C:\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+1.java:14: error: exception ArrayIndexOutOfBoundsException has already been caught
+        catch(ArrayIndexOutOfBoundsException e)
+        ^
+1 error
+
+class Test {
+    public static void main(String[] args) {
+        int arr[]={10,20,30,40,50};
+        System.out.println("main start");
+        try
+        {
+            System.out.println(arr[5]/0);
+            System.out.println("try end");
+        }
+        catch(ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("index out of range "+e);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Exception handle all type "+e);
+        }
+        
+        System.out.println("Program end.");
+    }
+}
+
+o/p:
+main start
+index out of range java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+Program end.
+
+
+finally :
+
+class Test {
+    public static void main(String[] args) {
+        int arr[]={10,20,30,40,50};
+        System.out.println("main start");
+        try
+        {
+            System.out.println(arr[3]/2);
+            System.out.println("try end");
+        }
+        finally
+        {
+            System.out.println("must execute");
+        }
+        
+        
+        System.out.println("Program end.");
+    }
+}
+
+main start
+20
+try end
+must execute
+Program end.
+
+
+class Test {
+    public static void main(String[] args) {
+        int arr[]={10,20,30,40,50};
+        System.out.println("main start");
+        try
+        {
+            System.out.println(arr[3]/0);
+            System.out.println("try end");
+        }
+        finally
+        {
+            System.out.println("must execute");
+        }
+        
+        
+        System.out.println("Program end.");
+    }
+}
+
+main start
+must execute
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at Test.main(1.java:7)
+
+
+
+class Test {
+    public static void main(String[] args) {
+        int arr[]={10,20,30,40,50};
+        System.out.println("main start");
+        try
+        {
+            System.out.println(arr[3]/0);
+            System.out.println("try end");
+        }
+        catch(Exception e)
+        {
+            System.out.println("Exception handle all type "+e);
+        }
+        finally
+        {
+            System.out.println("must execute");
+        }
+        
+        
+        System.out.println("Program end.");
+    }
+}
+
+
+
+main start
+Exception handle all type java.lang.ArithmeticException: / by zero
+must execute
+Program end.
+
+
+throw : it is a keyword.
+it is used to throw exception .
+class Test {
+    public static void main(String[] args) 
+    {
+       throw new ArithmeticException("hi zero");
+    }
+}
+
+this is used in userdefined exception .
+
+
+throws:
+________
+
+it is a keyword. 
+
+class Test {
+    static void f1()throws ArithmeticException
+    {
+        throw new ArithmeticException("hi zero");
+    }
+    public static void main(String[] args) {
+       f1();
+       System.out.println("main end ");
+    }
+}
+
+
+
+
+o/p: 
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+Exception in thread "main" java.lang.ArithmeticException: hi zero
+        at Test.f1(1.java:4)
+        at Test.main(1.java:7)
+
+class Test {
+    static void f1()throws ArithmeticException
+    {
+        throw new ArithmeticException("hi zero");
+    }
+    public static void main(String[] args) {
+        try
+        {
+             f1();
+        }
+       catch(Exception e)
+       {
+        System.out.println("exception caught "+e);
+       }
+       System.out.println("main end ");
+    }
+}
+
+exception caught java.lang.ArithmeticException: hi zero
+main end
+
+
+2 types of Exception
+________________
+(1)checked Exception 
+class X
+{
+    static
+    {
+        System.out.println("static block x");
+    }
+}
+class Test {
+    
+    public static void main(String[] args) {
+      System.out.println("main start ");
+      Class.forName("X");
+      System.out.println("main end "); 
+    }
+}
+
+C:\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+1.java:12: error: unreported exception ClassNotFoundException; must be caught or declared to be thrown
+      Class.forName("X");
+                   ^
+1 error
+
+
+solution try catch or throws 
+
+
+class X
+{
+    static
+    {
+        System.out.println("static block x");
+    }
+}
+class Test {
+    
+    public static void main(String[] args) throws ClassNotFoundException
+    {
+      System.out.println("main start ");
+      Class.forName("X");
+      System.out.println("main end "); 
+    }
+}
+
+
+
+o/p:
+C:\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+main start
+static block x
+main end
+
+
+
+class X
+{
+    static
+    {
+        System.out.println("static block x");
+    }
+}
+class Test {
+    
+    public static void main(String[] args) throws ClassNotFoundException
+    {
+      System.out.println("main start ");
+      Class.forName("Y");
+      System.out.println("main end "); 
+    }
+}
+
+
+
+C:\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+main start
+Exception in thread "main" java.lang.ClassNotFoundException: Y
+        at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581)
+        at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+        at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+        at java.base/java.lang.Class.forName0(Native Method)
+        at java.base/java.lang.Class.forName(Class.java:315)
+        at Test.main(1.java:13)
+
+
+
+
+class X
+{
+    static
+    {
+        System.out.println("static block x");
+    }
+}
+class Test {
+    
+    public static void main(String[] args) 
+    {
+      System.out.println("main start ");
+      try
+      {
+        Class.forName("Y");
+      }
+      catch(Exception e)
+      {
+        System.out.println(e);
+      }
+      System.out.println("main end "); 
+    }
+}
+
+
+o/p:
+C:\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+main start
+java.lang.ClassNotFoundException: Y
+main end
+
+
+
+
+class X
+{
+    static
+    {
+        System.out.println("static block x");
+    }
+}
+class Test {
+    
+    public static void main(String[] args) 
+    {
+      System.out.println("main start ");
+      try
+      {
+        Class.forName("X");
+      }
+      catch(Exception e)
+      {
+        System.out.println(e);
+      }
+      System.out.println("main end "); 
+    }
+}
+
+
+
+C:\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+main start
+static block x
+main end
+
+
+
+
+(2)unchecked Exception 
+class Test {
+    
+    public static void main(String[] args) {
+      System.out.println("main start ");
+      System.out.println(10/0);
+      System.out.println("main end "); 
+    }
+}
+
+
+C:\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+main start
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at Test.main(1.java:5)
+
+
+class Test {
+    
+    public static void main(String[] args) {
+      System.out.println("main start ");
+      try
+      {
+        System.out.println(10/0);
+      }
+      catch(Exception e)
+      {
+        System.out.println(e);
+      }
+      
+      System.out.println("main end "); 
+    }
+}
+
+
+C:\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+main start
+java.lang.ArithmeticException: / by zero
+main end
+
+
+
+
+userdefined exception(unchecked)
+__________________________________
+
+class VoterException extends RuntimeException
+{
+    VoterException(String s)
+    {
+        super(s);
+    }
+}
+class Person
+{
+    static void check(int age)
+    {
+        if(age<18)
+        {
+            throw new VoterException("age not allow ");
+        }
+        System.out.println("eligbal ");
+    }
+}
+class Test {
+    
+    public static void main(String[] args) 
+    {
+     Person.check(20);
+    }
+}
+
+C:\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+eligbal
+
+class VoterException extends RuntimeException
+{
+    VoterException(String s)
+    {
+        super(s);
+    }
+}
+class Person
+{
+    static void check(int age)
+    {
+        if(age<18)
+        {
+            throw new VoterException("age not allow ");
+        }
+        System.out.println("eligbal ");
+    }
+}
+class Test {
+    
+    public static void main(String[] args) 
+    {
+     Person.check(17);
+    }
+}
+
+C:\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+eligbal
+
+
+class VoterException extends RuntimeException
+{
+    VoterException(String s)
+    {
+        super(s);
+    }
+}
+class Person
+{
+    static void check(int age)
+    {
+        if(age<18)
+        {
+            throw new VoterException("age not allow ");
+        }
+        System.out.println("eligbal ");
+    }
+}
+class Test {
+    
+    public static void main(String[] args) 
+    {
+     Person.check(17);
+    }
+}
+
+C:\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+
+C:\Users\HP\Desktop\exceptionhandlingp>java Test
+Exception in thread "main" VoterException: age not allow
+        at Person.check(1.java:14)
+        at Test.main(1.java:23)
+
+
+
+class VoterException extends RuntimeException
+{
+    VoterException(String s)
+    {
+        super(s);
+    }
+}
+class Person
+{
+    static void check(int age)
+    {
+        if(age<18)
+        {
+            throw new VoterException("age not allow ");
+        }
+        System.out.println("eligbal ");
+    }
+}
+class Test {
+    
+    public static void main(String[] args) 
+    {
+        try
+        {
+             Person.check(17);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        System.out.println("p end");
+    }
+}
+
+
+
+
+
+o/p:
+VoterException: age not allow
+p end
+
+
+
+Checked Exception 
+__________________
+class VoterException extends Exception
+{
+    VoterException(String s)
+    {
+        super(s);
+    }
+}
+class Person
+{
+    static void check(int age)
+    {
+        if(age<18)
+        {
+            throw new VoterException("age not allow ");
+        }
+        System.out.println("eligbal ");
+    }
+}
+class Test {
+    
+    public static void main(String[] args) 
+    {
+        try
+        {
+             Person.check(17);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        System.out.println("p end");
+    }
+}
+
+
+\Users\HP\Desktop\exceptionhandlingp>javac 1.java
+1.java:14: error: unreported exception VoterException; must be caught or declared to be thrown
+                        throw new VoterException("age not allow ");
+                        ^
+1 error
+
+
+
+
+class VoterException extends Exception
+{
+    VoterException(String s)
+    {
+        super(s);
+    }
+}
+class Person
+{
+    static void check(int age)throws VoterException
+    {
+        if(age<18)
+        {
+            throw new VoterException("age not allow ");
+        }
+        System.out.println("eligbal ");
+    }
+}
+class Test {
+    
+    public static void main(String[] args) 
+    {
+        try
+        {
+             Person.check(17);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        System.out.println("p end");
+    }
+}
+
+
+VoterException: age not allow
+p end

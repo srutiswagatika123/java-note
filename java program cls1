@@ -1,0 +1,422 @@
+dos comand
+________________
+
+
+cls :   clear the screen
+
+dir  : it show folder and file
+mkdir foldername
+or
+md foldername 
+
+cd foldername
+
+cd..    previous
+
+cd\       root
+drivename:   
+
+
+
+
+languange 
+__________________
+C
+C++
+java
+php
+.
+.
+.
+
+to develope    software.
+
+
+
+software : it is collection of program. 
+
+system software :
+
+os
+
+linux
+mac
+windows
+
+
+
+application software
+
+
+facebook     webapp  application
+gmail
+msoffice
+vlc         desktop application
+
+
+program :it is a set of instruction.
+
+
+programer  : who write the program .
+
+
+programming languange  :
+
+it predefined tools and instruction . 
+
+java    oracle owner
+
+
+
+literal/constant/data
+________________________
+
+integer       any whole  number       25 ,-23         4byte   
+
+real          any decimal  value        3.5  ,-4.7      8byte
+                                        3.5f,-4.7f       4byte
+
+char                                   'a'  '1'  '5' '\n'   2byte
+
+
+string                                "a"  "ab23"        
+
+boolean                                true   false
+
+
+
+
+
+identify the constant
+5     
+'5'
+5.0
+5.0f
+"5"
+
+//wap display any integer  realno  and string value
+
+
+class  Test
+{
+	public static void main(String arg[])
+	{
+         System.out.println(10);
+         System.out.println(2.5);
+         System.out.println("hi");
+         
+	}      
+   
+
+}
+
+
+
+
+compile  syntax:
+syntax:
+javac filename.java
+
+Example:
+javac  1.java
+
+after compile
+
+Test.class  file create
+
+
+How to run java program
+___________________________
+
+
+java classname
+
+java  Test
+
+
+
+
+C:\Users\DELL\Desktop\javads>javac 1.java
+
+C:\Users\DELL\Desktop\javads>java Test
+10
+2.5
+h
+
+
+//wap display realno  boolean char and string value
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	     System.out.println(5.0);
+	     System.out.println(true);
+	     System.out.println('y');
+	     System.out.println("ok");
+	}
+}
+
+C:\Users\DELL\Desktop\javads>javac 2.java
+C:\Users\DELL\Desktop\javads>java Test
+5.0
+true
+y
+ok
+
+
+identifier:
+it is userdefined word.
+This word is used to name of variable,classname  methodname,.....
+rules
+_______
+(1)
+it consist of
+
+a to z
+A to Z    
+0 to 9
+_
+
+$
+(2)
+not start with digit  
+
+(3)space not allow  
+
+(4)case senistive
+a  A
+
+(5)predefined word not allow
+if public static  void,.....
+
+reservedword:
+it is predefined word.
+This word maening known to the java compiler.
+
+in java   53  reseverd word.
+
+3  literal   :   null true false
+50  keyword
+
+48  used  keyword      if public static    
+
+2 unused  keyword      goto   const
+
+
+identify the identifier
+_____________________
+
+
+aB3     v
+a#B     iv
+3ab     iv
+
+a b     iv
+
+
+a_b      v
+
+_ab      v
+
+if       iv (keyword)
+
+IF        v  (not recommand)
+
+
+datatype:
+it tells the compiler  your variable store which type of data and how much memory occupy.
+
+primitive datatype
+___________________
+
+value type
+byte        1byte
+short        2byte
+int          4byte 
+long         8byte
+
+
+float          4byte
+double         8byte
+
+
+char            2byte
+
+boolean          
+
+
+
+refernce type
+_________________
+
+address type
+
+
+String
+Scanner
+..
+..
+classname
+
+
+
+variable:
+it is a memory location name .
+where store and retrive data.
+
+variable name must be valid identifier.
+
+How to create  variable //instantion of variable//memory createtion of variable//declartion of variable
+________________________
+
+
+datatype  variablename;
+
+int      it;  //it is variable of integer type
+double   db;
+
+
+int x;
+int y;
+
+or
+int x,y;  
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    
+	    System.out.println(a);
+	}
+}
+
+o/p:
+C:\Users\DELL\Desktop\javads>javac 3.java
+3.java:6: error: cannot find symbol
+            System.out.println(a);
+                               ^
+  symbol:   variable a
+  location: class Test
+1 error
+
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	    int a;
+	    System.out.println(a);
+	}
+}
+
+o/p:
+error
+C:\Users\DELL\Desktop\javads>javac 3.java
+3.java:6: error: variable a might not have been initialized
+            System.out.println(a);
+                               ^
+1 error
+
+
+
+
+how to initialized a variable
+__________________________________
+
+
+datatype  variablename;
+
+variablename=literal;
+
+int a;
+a=10;
+
+
+in single line  initlization
+___________________________
+
+datatype variablename=constant;
+
+int a=10;
+
+
+//wap solve previous program using variable concept
+class Test
+{
+	public static void main(String arg[])
+	{
+	   double db; //declartion
+       boolean b;
+       char ch;
+       String s;
+       db=5.0;   //initlization
+       b=true;
+       ch='y';
+       s="ok";
+	    System.out.println(db); //display
+	     System.out.println(b);
+	     System.out.println(ch);
+	     System.out.println(s);
+	  }
+}
+
+
+o/p:
+5.0
+true
+y
+ok
+
+
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	   double db=5.0; //declartion and initlization in one line
+       boolean b=true;
+       char ch='y';
+       String s="ok";
+       
+	    System.out.println(db); //display
+	     System.out.println(b);
+	     System.out.println(ch);
+	     System.out.println(s);
+	  }
+}
+
+o/p:
+5.0
+true
+y
+ok
+
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	  int a=10;
+	 a=20; //reinitlization
+	 System.out.println(a);
+	  }
+}
+
+
+o/p:
+20
+
+class Test
+{
+	public static void main(String arg[])
+	{
+	  int a=10;
+	 a=20; //reinitlization
+	 System.out.println(a);
+	  }
+}
+
+o/P:
+30
